@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akshay Hospital - World Class Healthcare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'logo-primary': '#f43f8c', // pink
+                        'logo-secondary': '#a3e635', // lime green
+                        'logo-dark': '#831843', // dark pink
+                        'cta-blue': '#007bff', // Main blue for CTAs/Hover
+                        'chat-blue': '#00c0ff', // Bright blue/teal for the Chat CTA
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Dropdown Transition (Desktop) */
+        .dropdown-menu {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f3f4f6;
+            color: #1a1a1a;
+        }
+
+        /* Mobile Menu Animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #ffffff;
+        }
+
+        .mobile-menu.open {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        /* Custom style for the vertical CTA button */
+        .vertical-cta {
+            transform: rotate(90deg) translate(50%, 0);
+            transform-origin: 100% 0;
+            white-space: nowrap;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
+        /* Icon rotation for mobile dropdowns */
+        .specialities-mobile-dropdown i {
+            transition: transform 0.3s ease;
+        }
+
+        /* Custom logo style */
+        .akshaya-logo {
+            display: flex;
+            align-items: center;
+            height: 90px;
+            width: auto;
+        }
+
+        .akshaya-logo img {
+            height: 90px;
+            width: auto;
+            object-fit: contain;
+            margin-right: 0;
+        }
+
+        /* ------------------------------------- */
+        /* --- SLIDESHOW ANIMATION --- */
+        /* ------------------------------------- */
+
+        @keyframes slide {
+            0% {
+                background-position: 0 0;
+            }
+
+            30% {
+                background-position: 0 0;
+            }
+
+            33.33% {
+                background-position: -100vw 0;
+            }
+
+            63.33% {
+                background-position: -100vw 0;
+            }
+
+            66.66% {
+                background-position: -200vw 0;
+            }
+
+            96.66% {
+                background-position: -200vw 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .slideshow-background {
+            width: 300%;
+            height: 100%;
+            background-image:
+                url('path/to/surgical-bg-1.jpg'),
+                url('path/to/surgical-bg-2.jpg'),
+                url('path/to/surgical-bg-3.jpg');
+            background-size: 100vw 100%, 100vw 100%, 100vw 100%;
+            background-repeat: no-repeat;
+            background-position: 0 0, 100vw 0, 200vw 0;
+            animation: slide 15s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans relative">
+    <a href="#" id="open-appointment-modal-right"
+        class="hidden md:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
+        <button
+            class="bg-logo-primary text-white font-semibold tracking-wider vertical-cta shadow-xl hover:bg-logo-dark transition duration-300">
+            Make An Appointment
+        </button>
+    </a>
+
+    <a href="https://wa.me/919876543210" target="_blank" class="fixed right-6 bottom-6 z-50">
+        <button
+            class="bg-logo-secondary text-logo-dark font-semibold py-3 px-6 rounded-lg shadow-xl hover:bg-lime-600 transition duration-300">
+            Chat With Us
+        </button>
+    </a>
+
+
+    <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
+
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center border-b border-gray-100">
+            <div class="flex items-center space-x-4">
+                <div class="akshaya-logo">
+                    <img src="./imges/logo.jpg" alt="Akshaya Hospital Logo">
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="flex items-center space-x-2">
+                    <i data-feather="phone" class="text-logo-primary"></i>
+                    <div>
+                        <p class="text-sm text-gray-500">Emergency</p>
+                        <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 1234567890</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i data-feather="mail" class="text-logo-primary"></i>
+                    <div>
+                        <p class="text-sm text-gray-500">Email</p>
+                        <a href="mailto:info@akshayhospital.com"
+                            class="font-bold text-logo-primary">akshayahospitals03@gmail.com</a>
+                    </div>
+                </div>
+                <a href="#" id="open-appointment-modal-header"
+                    class="bg-logo-primary hover:bg-logo-dark text-white px-4 py-2 rounded-md transition duration-300">
+                    Make Appointment
+                </a>
+
+            </div>
+
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div class="hidden md:block bg-lime-500 shadow-md">
+            <div class="container mx-auto px-4 py-4">
+
+                <div class="w-full flex justify-between items-center">
+
+                    <nav class="flex items-center space-x-6 text-white text-base font-medium">
+                        <a href="index.html" class="hover:text-gray-900 transition duration-300">Home</a>
+                        <a href="about.html" class="hover:text-gray-900 transition duration-300">About Us</a>
+
+                        <div class="dropdown relative group">
+                            <a href="specialities.html" class="hover:text-gray-900 flex items-center">
+                                Specialities <span class="ml-1 text-xs font-bold">+</span>
+                            </a>
+                            <div
+                                class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
+                                <a href="general-medicine.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">General Medicine</a>
+                                <a href="gastroenterology.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Gastroenterology</a>
+                                <a href="laparoscopic-surgery.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Laparoscopic Surgery</a>
+                                <a href="surgery.html" class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Surgery</a>
+                                <a href="Obstetrics-Gynaecology.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Obstetrics/Gynaecology</a>
+                                <a href="accident-emergency.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Accident & Emergency</a>
+                                <a href="orthopedics.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Orthopedics</a>
+                                <a href="Paediatrics.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Paediatrics</a>
+                                <a href="ICU-Critical-Care.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">ICU & Critical Care</a>
+                                <a href="Neonatology-NICU.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neonatology and NICU</a>
+                                <a href="Rehabilitation.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Rehabilitation</a>
+                                <a href="Neurology.html"
+                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neurology</a>
+                            </div>
+                        </div>
+
+                        <a href="doctors.html" class="hover:text-gray-900">Doctors</a>
+                        <a href="blog.html" class="hover:text-gray-900">Blog</a>
+
+                        <div class="dropdown relative group">
+                            <a href="facilities.html" class="hover:text-gray-900 flex items-center">
+                                Facilities <span class="ml-1 text-xs font-bold">+</span>
+                            </a>
+                            <div
+                                class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
+
+                                <a href="facilities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
+                                    Facilities</a>
+                                <a href="telemedicine&video-cosultation.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">Telemedicine &
+                                    Video-Consultation</a>
+                                <a href="24-7-ambulence.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                                    Ambulance</a>
+                                <a href="dialysis.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">Dialysis</a>
+                                <a href="consultation&opd.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">Consulttaion & OPD</a>
+                                <a href="wards.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Wards</a>
+                                <a href="24-7-diagnostics&labs.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7 Diagnostics & Labs</a>
+                                <a href="Insurencedesk.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">Insurence Desk</a>
+                                <a href="24-7-pharmacy.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                                    Pharmacy</a>
+                                <a href="quality.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Quality</a>
+                                <a href="Endoscopy-colonoscopy-ERCP.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">Endoscopy/Colonoscopy/ERCP</a>
+                                <a href="4d-ultra-sound-scan.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">4D Ultra Sound Scan</a>
+                                <a href="bera-vep-videoeeg-nct.html"
+                                    class="block px-3 py-1 rounded-md hover:bg-gray-200">BERA/VEP Video EEG/NCT</a>
+                            </div>
+                        </div>
+
+                        <a href="contact.html" class="hover:text-gray-900">Contact Us</a>
+                    </nav>
+
+                    <div class="flex items-center space-x-3 text-white">
+                        <a href="https://www.facebook.com/profile.php?id=61581702164951"
+                            class="hover:text-logo-primary"><i data-feather="facebook" class="w-6 h-6"></i></a>
+                        <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
+                            class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
+                        <a href="https://www.youtube.com/@AkshayaHospitals03" class="hover:text-logo-primary"><i
+                                data-feather="youtube" class="w-6 h-6"></i></a>
+                        <a href="https://www.linkedin.com/company/akshayahospitals/posts/?feedView=all"
+                            class="hover:text-logo-primary"><i data-feather="linkedin" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+            <div class="px-4 py-4 space-y-2 bg-white border-t border-gray-200">
+                <a href="index.html" class="block py-2 text-lg hover:bg-gray-100">Home</a>
+                <a href="about.html" class="block py-2 text-lg hover:bg-gray-100">About Us</a>
+
+                <div class="specialities-mobile-dropdown">
+                    <a id="specialities-toggle" href="#"
+                        class="relative py-2 text-lg cursor-pointer flex justify-between items-center pr-8">
+                        Specialities <i data-feather="chevron-down"
+                            class="w-4 h-4 text-logo-primary absolute right-0 top-1/2 transform -translate-y-1/2"></i>
+                    </a>
+                    <div id="specialities-list"
+                        class="pl-4 pt-1 pb-1 space-y-1 hidden text-base border-l border-gray-200 ml-4">
+                        <a href="specialities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
+                            Specialities</a>
+                        <a href="general-medicine.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">General
+                            Medicine</a>
+                        <a href="gastroenterology.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Gastroenterology</a>
+                        <a href="laparoscopic-surgery.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Laparoscopic Surgery</a>
+                        <a href="surgery.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Surgery</a>
+                        <a href="Obstetrics-Gynaecology.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Obstetrics/Gynaecology</a>
+                        <a href="accident-emergency.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Accident
+                            & Emergency</a>
+                        <a href="orthopedics.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Orthopedics</a>
+                        <a href="Paediatrics.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Paediatrics</a>
+                        <a href="ICU-Critical-Care.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">ICU &
+                            Critical Care</a>
+                        <a href="Neonatology-NICU.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Neonatology
+                            and NICU</a>
+                        <a href="Rehabilitation.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Rehabilitation</a>
+                        <a href="Neurology.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Neurology</a>
+                    </div>
+                </div>
+
+                <a href="doctors.html" class="block py-2 text-lg hover:bg-gray-100">Doctors</a>
+                <a href="gallery.html" class="block py-2 text-lg hover:bg-gray-100">Gallery</a>
+                <a href="blog.html" class="block py-2 text-lg hover:bg-gray-100">Blog</a>
+                <a href="packages.html" class="block py-2 text-lg hover:bg-gray-100">Health Packages</a>
+
+                <div class="specialities-mobile-dropdown">
+                    <a id="facilities-toggle" href="#"
+                        class="relative py-2 text-lg cursor-pointer flex justify-between items-center pr-8">
+                        Facilities <i data-feather="chevron-down"
+                            class="w-4 h-4 text-logo-primary absolute right-0 top-1/2 transform -translate-y-1/2"></i>
+                    </a>
+                    <div id="facilities-list"
+                        class="pl-4 pt-1 pb-1 space-y-1 hidden text-base border-l border-gray-200 ml-4">
+                        <a href="facilities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
+                            Facilities</a>
+                        <a href="telemedicine&video-cosultation.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Telemedicine & Video-Consultation</a>
+                        <a href="24-7-ambulence.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                            Ambulance</a>
+                        <a href="dialysis.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Dialysis</a>
+                        <a href="consultation&opd.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Consulttaion & OPD</a>
+                        <a href="wards.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Wards</a>
+                        <a href="24-7-diagnostics&labs.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                            Diagnostics & Labs</a>
+                        <a href="Insurencedesk.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Insurence
+                            Desk</a>
+                        <a href="24-7-pharmacy.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                            Pharmacy</a>
+                        <a href="quality.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Quality</a>
+                        <a href="Endoscopy-colonoscopy-ERCP.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Endoscopy/Colonoscopy/ERCP</a>
+                        <a href="4d-ultra-sound-scan.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">4D Ultra
+                            Sound Scan</a>
+                        <a href="bera-vep-videoeeg-nct.html"
+                            class="block px-3 py-1 rounded-md hover:bg-gray-200">BERA/VEP Video EEG/NCT</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="block py-2 text-lg hover:bg-gray-100">Contact Us</a>
+
+                <hr class="border-gray-200 my-4">
+
+                <div class="flex flex-col items-start pt-2 space-y-3">
+                    <h4 class="text-sm font-semibold text-gray-500">Connect With Us</h4>
+                    <div class="flex space-x-6 text-gray-700">
+                        <a href="https://www.facebook.com/people/Akshaya-Hospitals/61581702164951/"
+                            class="hover:text-logo-primary"><i data-feather="facebook" class="w-6 h-6"></i></a>
+                        <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
+                            class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
+                        <a href="https://www.youtube.com/@AkshayaHospitals03" class="hover:text-logo-primary"><i
+                                data-feather="youtube" class="w-6 h-6"></i></a>
+                        <a href="https://www.linkedin.com/company/akshayahospitals/posts/?feedView=all"
+                            class="hover:text-logo-primary"><i data-feather="linkedin" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="py-20 bg-gradient-to-b from-green-50 to-pink-50 text-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold text-lime-600 mb-4">Insurance Desk</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                    Hassle-free insurance assistance and cashless hospitalization support — ensuring smooth and
+                    worry-free treatment for all our patients.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
+                <div>
+                    <img src="facilites/insurance-desk.jpg" alt="Insurance Desk"
+                        class="rounded-2xl shadow-lg w-full">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-4">About Our Insurance Desk</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Our dedicated insurance desk provides end-to-end assistance for all insurance-related processes.
+                        From document submission to claim settlement, our team ensures patients and families experience a
+                        seamless and stress-free process during their hospital journey.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Cashless
+                            hospitalization services</li>
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Assistance
+                            with insurance approvals and documentation</li>
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Partnerships
+                            with leading insurance providers</li>
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Quick claim
+                            processing and updates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-lg p-10 mb-16">
+                <h3 class="text-3xl font-semibold text-center text-lime-700 mb-8">Insurance Claim Process</h3>
+                <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-8 text-center">
+                    <div>
+                        <div
+                            class="bg-lime-100 text-lime-600 w-12 h-12 mx-auto rounded-full flex items-center justify-center text-lg font-bold mb-3">
+                            1</div>
+                        <p class="font-semibold text-gray-800 mb-2">Submit Documents</p>
+                        <p class="text-gray-600">Provide insurance card & doctor’s reports at the desk.</p>
+                    </div>
+                    <div>
+                        <div
+                            class="bg-pink-100 text-pink-600 w-12 h-12 mx-auto rounded-full flex items-center justify-center text-lg font-bold mb-3">
+                            2</div>
+                        <p class="font-semibold text-gray-800 mb-2">Verification</p>
+                        <p class="text-gray-600">Our team verifies policy details with your insurer.</p>
+                    </div>
+                    <div>
+                        <div
+                            class="bg-lime-100 text-lime-600 w-12 h-12 mx-auto rounded-full flex items-center justify-center text-lg font-bold mb-3">
+                            3</div>
+                        <p class="font-semibold text-gray-800 mb-2">Approval</p>
+                        <p class="text-gray-600">Receive pre-authorization for cashless treatment.</p>
+                    </div>
+                    <div>
+                        <div
+                            class="bg-pink-100 text-pink-600 w-12 h-12 mx-auto rounded-full flex items-center justify-center text-lg font-bold mb-3">
+                            4</div>
+                        <p class="font-semibold text-gray-800 mb-2">Claim Settlement</p>
+                        <p class="text-gray-600">We coordinate directly with your insurer for settlement.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-4xl mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-semibold text-pink-700 mb-6">Book Your Online Consultation</h2>
+                    <form id="onlineConsultationForm" action="" method="POST"
+                        class="grid md:grid-cols-2 gap-6 bg-white p-8 rounded-2xl shadow">
+                        <input type="hidden" name="formType" value="onlineConsultationForm">
+                        <input type="text" name="name" placeholder="Full Name" class="p-3 border rounded-lg" required>
+                        <input type="email" name="email" placeholder="Email Address" class="p-3 border rounded-lg"
+                            required>
+                        <input type="tel" name="phone" placeholder="Phone Number" class="p-3 border rounded-lg" required>
+                        <select name="specialization" class="p-3 border rounded-lg" required>
+                            <option value="">Select Specialization</option>
+                            <option value="General Medicine">General Medicine</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Gynecology">Gynecology</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="Cardiology">Cardiology</option>
+                        </select>
+                        <textarea name="message" placeholder="Describe Your Health Concern"
+                            class="md:col-span-2 p-3 border rounded-lg h-32" required></textarea>
+                        <button type="submit"
+                            class="md:col-span-2 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-lg shadow">
+                            Book Appointment
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </section>
+
+
+<!-- Booking Form Section -->
+
+
+
+
+
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">About Akshay Hospital</h3>
+                    <p class="text-gray-400 mb-4">Akshay Hospital is a multi-specialty healthcare provider committed
+                        to delivering world-class medical services with compassion and excellence.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/people/Akshaya-Hospitals/61581702164951/"
+                            class="text-gray-400 hover:text-logo-primary"><i data-feather="facebook"></i></a>
+
+                        <a href="https://www.youtube.com/@AkshayaHospitals03"
+                            class="text-gray-400 hover:text-logo-primary"><i data-feather="youtube"></i></a>
+                        <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
+                            class="text-gray-400 hover:text-logo-primary"><i data-feather="instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/akshayahospitals/posts/?feedView=all"
+                            class="text-gray-400 hover:text-logo-primary"><i data-feather="linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li class="hover:text-logo-primary"><a href="index.html"
+                                class="text-gray-400 hover:text-logo-primary">Home</a></li>
+                        <li class="hover:text-logo-primary"><a href="about.html"
+                                class="text-gray-400 hover:text-logo-primary">About Us</a></li>
+                        <li class="hover:text-logo-primary"><a href="specialities.html"
+                                class="text-gray-400 hover:text-logo-primary">Specialities</a></li>
+                        <li class="hover:text-logo-primary"><a href="doctors.html"
+                                class="text-gray-400 hover:text-logo-primary">Our Doctors</a></li>
+                        <li class="hover:text-logo-primary"><a href="facilities.html"
+                                class="text-gray-400 hover:text-logo-primary">Facilities</a></li>
+                        <li class="hover:text-logo-primary"><a href="contact.html"
+                                class="text-gray-400 hover:text-logo-primary">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Departments</h3>
+                    <ul class="space-y-3">
+                        <li class="hover:text-logo-primary"><a href="cardiology.html"
+                                class="text-gray-400 hover:text-logo-primary">Cardiology</a></li>
+                        <li class="hover:text-logo-primary"><a href="neurology.html"
+                                class="text-gray-400 hover:text-logo-primary">Neurology</a></li>
+                        <li class="hover:text-logo-primary"><a href="orthopedics.html"
+                                class="text-gray-400 hover:text-logo-primary">Orthopedics</a></li>
+                        <li class="hover:text-logo-primary"><a href="pediatrics.html"
+                                class="text-gray-400 hover:text-logo-primary">Pediatrics</a></li>
+                        <li class="hover:text-logo-primary"><a href="surgery.html"
+                                class="text-gray-400 hover:text-logo-primary">General Surgery</a></li>
+                        <li class="hover:text-logo-primary"><a href="emergency.html"
+                                class="text-gray-400 hover:text-logo-primary">Emergency</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Contact Info</h3>
+                    <address class="not-italic text-gray-400 space-y-3">
+                        <div class="flex items-start">
+                            <i data-feather="map-pin" class="mr-3 mt-1"></i>
+                            <p> India</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="phone" class="mr-3"></i>
+                            <p>+91 1234567890</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="mail" class="mr-3"></i>
+                            <p>akshayahospitals03@gmail.com</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="clock" class="mr-3"></i>
+                            <p>Open 24/7</p>
+                        </div>
+                    </address>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 Akshay Hospital. All Rights Reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="privacy.html" class="text-gray-400 hover:text-logo-primary">Privacy Policy</a>
+                        <a href="terms.html" class="text-gray-400 hover:text-logo-primary">Terms of Service</a>
+                        <a href="sitemap.html" class="text-gray-400 hover:text-logo-primary">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <div id="contactModal"
+        class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative mx-4 my-8">
+
+            <button id="closeModal"
+                class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+
+            <h2 class="text-2xl font-bold text-lime-600 mb-6 text-center">Contact Akshaya Hospital</h2>
+
+            <form id="contactForm" class="space-y-4">
+                <input type="hidden" name="formType" value="popupForm">
+
+                <div>
+                    <label class="block text-gray-700 mb-2" for="popupName">Full Name</label>
+                    <input type="text" id="popupName" name="name" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-2" for="popupEmail">Email Address</label>
+                    <input type="email" id="popupEmail" name="email" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-2" for="popupPhone">Phone Number</label>
+                    <input type="tel" id="popupPhone" name="phone" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-2" for="popupMessage">Message</label>
+                    <textarea id="popupMessage" name="message" rows="4" required
+                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"></textarea>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-lime-600 hover:bg-pink-600 text-white font-bold py-3 rounded-lg transition duration-300">Send
+                    Message</button>
+            </form>
+
+        </div>
+    </div>
+
+
+    <script>
+        // ---------- CONFIGURATION ----------
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwjHDAS7AUpUyr7fvgbvlyp_DndgN6apFYsQt57Wt9TFmCdfbzmzv-2w9GxZg7gLDuI0w/exec";
+        const THANK_YOU_PAGE = "thank-you.html"; // Redirect page after successful submission
+
+        // ---------- ELEMENTS (Forms & Modals) ----------
+        const modal = document.getElementById('contactModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const contactForm = document.getElementById('contactForm'); // Popup form
+        const contactPageForm = document.getElementById('contactPageForm'); // Main contact page form
+        const onlineConsultationForm = document.getElementById('onlineConsultationForm'); // Telemedicine form
+
+        // Buttons that open popup
+        const openModalRight = document.getElementById('open-appointment-modal-right');
+        const openModalHeader = document.getElementById('open-appointment-modal-header');
+
+        // ---------- POPUP CONTROL ----------
+        function showModal() {
+            if (!modal) return;
+            modal.classList.remove('opacity-0', 'invisible');
+            modal.classList.add('opacity-100', 'visible');
+        }
+
+        function hideModal() {
+            if (!modal) return;
+            modal.classList.add('opacity-0', 'invisible');
+            modal.classList.remove('opacity-100', 'visible');
+        }
+
+        // Event listeners for popup buttons
+        if (openModalRight) openModalRight.addEventListener('click', e => { e.preventDefault(); showModal(); });
+        if (openModalHeader) openModalHeader.addEventListener('click', e => { e.preventDefault(); showModal(); });
+        if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
+        if (modal) modal.addEventListener('click', e => { if (e.target === modal) hideModal(); });
+        
+        // Auto show popup every 20 seconds
+        setInterval(showModal, 20000);
+
+        // ---------- FORM SUBMISSION HANDLER (Generic Function) ----------
+        async function handleFormSubmission(e, formElement, redirect = false) {
+            e.preventDefault();
+
+            // Simple validation check for the select field (used by onlineConsultationForm)
+            if (formElement.id === 'onlineConsultationForm' && formElement.querySelector('select[name="specialization"]').value === "") {
+                alert("Please select a specialization.");
+                return;
+            }
+
+            const formData = new FormData(formElement);
+            const params = new URLSearchParams(formData);
+
+            // Disable button during submission to prevent double clicks
+            const submitButton = formElement.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+
+            try {
+                // Fetch to the Google Script Web App
+                const res = await fetch(WEB_APP_URL, {
+                    method: "POST",
+                    body: params,
+                    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
+                });
+
+                const data = await res.json();
+
+                if (data.result === "success") {
+                    
+                    if (redirect) {
+                        // Redirect for the main forms
+                        alert("✅ Message sent successfully!");
+                       
+                    } else {
+                        // Standard popup success message and reset
+                        alert("✅ Message sent successfully!");
+                        formElement.reset();
+                        hideModal();
+                    }
+                } else {
+                    alert("⚠️ Submission Error: " + (data.error || "Please check your form and try again."));
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                }
+            } catch (err) {
+                console.error("Fetch error:", err);
+                alert("❌ Network Error! Could not reach the server.");
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }
+
+        // ---------- Form Handlers (All Forms Intercepted) ----------
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => handleFormSubmission(e, contactForm, false));
+        }
+        if (contactPageForm) {
+            contactPageForm.addEventListener('submit', (e) => handleFormSubmission(e, contactPageForm, true));
+        }
+        if (onlineConsultationForm) {
+            onlineConsultationForm.addEventListener('submit', (e) => handleFormSubmission(e, onlineConsultationForm, true));
+        }
+
+
+        // --- Mobile Menu Dropdown Toggles and Initial Render ---
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // --- 1. Main Mobile Menu Toggle (Hamburger) ---
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('i');
+                    const isOpen = mobileMenu.classList.contains('open');
+                    icon.setAttribute('data-feather', isOpen ? 'x' : 'menu');
+                    feather.replace();
+                });
+            }
+
+            // --- 2. Mobile Dropdown Toggles (Specialities and Facilities) ---
+            function setupDropdownToggle(toggleId, listId) {
+                const toggleButton = document.getElementById(toggleId);
+                const dropdownList = document.getElementById(listId);
+
+                if (toggleButton && dropdownList) {
+                    toggleButton.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        dropdownList.classList.toggle('hidden');
+
+                        const chevronIcon = toggleButton.querySelector('i');
+                        if (chevronIcon) {
+                            const isHidden = dropdownList.classList.contains('hidden');
+                            chevronIcon.classList.toggle('rotate-180', !isHidden);
+                        }
+                    });
+                }
+            }
+
+            // Apply the Dropdown Toggle to Both Mobile Sections
+            setupDropdownToggle('specialities-toggle', 'specialities-list');
+            setupDropdownToggle('facilities-toggle', 'facilities-list');
+
+            // --- 3. Initial Feather Icons Rendering ---
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+        });
+    </script>
+</body>
+
+</html>

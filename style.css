@@ -1,0 +1,551 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+}
+
+/* Container - Used for centering desktop content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Top Bar */
+.top-bar-block {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+    /* VERTICAL PADDING for more space */
+    padding: 15px 0; 
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 20px; /* Desktop/Mobile horizontal padding */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Placeholder image style for logo */
+.logo img {
+    height: 50px;
+    width: 150px; 
+    background-color: #e0f2f1;
+    border-radius: 5px;
+}
+
+/* Hides the ambulance text globally, as requested */
+.ambulance-text {
+    display: none;
+}
+
+/* Contact Info in Top Bar (Desktop only container) */
+.contact-info-col ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    align-items: center;
+}
+
+.contact-info-col ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-info-col ul li span {
+    font-size: 12px;
+    color: #555;
+}
+
+.contact-info-col ul li h4 a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #0a6fa1;
+}
+
+/* Appointment Button */
+.appointment-btn a {
+    background: #0a6fa1;
+    padding: 8px 14px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.appointment-btn a:hover {
+    background: #064d73;
+}
+
+/* Second Nav Bar (Desktop) */
+.Second-nav-bar {
+    background: #0a6fa1;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    padding: 20px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar-links {
+    display: flex;
+    list-style: none;
+    gap: 35px; 
+    padding: 0;
+    margin: 0;
+}
+
+/* Social Icons List */
+.nav-icons {
+    display: flex;
+    list-style: none;
+    gap: 35px; 
+    padding: 0;
+    margin: 0;
+    /* ADDED MARGIN LEFT to separate social links from main links */
+    margin-left: 35px;
+}
+
+.navbar-links .navlink,
+.nav-icons .navlink {
+    color: #fff;
+    text-decoration: none;
+    /* INCREASED FONT SIZE to 16px */
+    font-size: 16px; 
+    transition: 0.3s;
+    padding: 0;
+}
+
+.navbar-links .navlink:hover,
+.nav-icons .navlink:hover {
+    text-decoration: underline;
+}
+
+/* Dropdown (Desktop) */
+.nav-item-dropdown {
+    position: relative;
+}
+
+.nav-item-dropdown .dropdown-items {
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    padding: 10px 0;
+    z-index: 100;
+}
+
+/* Show dropdown on hover (desktop) */
+.nav-item-dropdown:hover .dropdown-items {
+  display: block;
+}
+
+/* Hide dropdown by default */
+.dropdown-items {
+  display: none;
+  flex-direction: column;
+}
+
+
+.dropdown-items a {
+    display: block;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* For mobile dropdown toggle */
+.dropdown-items.show {
+  display: flex !important;
+  background: #fff;
+  position: static;
+  box-shadow: none;
+  padding: 10px 0;
+}
+
+.dropdown-items.show a {
+  color: #333;
+  padding: 10px 20px;
+}
+
+.dropdown-items a:hover {
+    background: #f2f2f2;
+}
+
+/* Hamburger (Desktop - Hidden) */
+.hamburger {
+    display: none; 
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    color: #0a6fa1; 
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #0a6fa1; 
+    border-radius: 3px;
+}
+
+/* Floating Appointment Button Styling */
+.floating-appointment-btn {
+    position: fixed; 
+    right: 0; 
+    top: 50%; 
+    transform: rotate(-90deg) translate(50%, 0); 
+    transform-origin: 100% 0; 
+    background: #0a6fa1; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border-radius: 5px 5px 0 0; 
+    font-weight: bold; 
+    text-decoration: none;
+    z-index: 10;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.floating-appointment-btn:hover {
+     background: #064d73;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Mobile Responsive Styles (Max-width: 992px) */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    
+    /* CRUCIAL FOR GAP: Pushes logo (left) and hamburger (right) to opposite sides */
+    .top-bar {
+        justify-content: space-between; 
+        padding: 10px 20px;
+    }
+    
+    /* Hide the desktop contact info wrapper on mobile */
+    .contact-info-col {
+        display: none;
+    }
+
+    /* Hamburger (Mobile - Visible) */
+    .hamburger {
+        display: flex; 
+        margin: 0; 
+    }
+    
+    /* Second Nav Bar - menu container */
+    .navbar {
+        padding: 0; 
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+    
+    /* General list visibility properties for mobile */
+    .navbar-links,
+    .nav-icons {
+        display: none; /* Initially hidden */
+        width: 100%;
+        background: #0a6fa1;
+        padding: 0;
+        gap: 0; 
+    }
+
+    /* Toggled state: Show the vertical menu */
+    .navbar.active .navbar-links,
+    .navbar.active .nav-icons {
+        display: flex;
+    }
+    
+    /* 1. Mobile Links (Vertical/Column Layout) */
+    .navbar-links {
+        flex-direction: column; /* Force vertical stacking for menu items */
+    }
+
+    /* 2. Mobile Icons (Horizontal/Row Layout) */
+    .nav-icons {
+        flex-direction: row; /* Force horizontal layout for social icons */
+        justify-content: flex-start;
+        padding: 10px 20px; /* Padding for the entire social row */
+        gap: 20px; /* Space between icons */
+        border-top: 1px solid rgba(255,255,255,0.3);
+        /* Remove margin-left added for desktop */
+        margin-left: 0; 
+    }
+    
+    /* Styling for individual list items in the mobile menu */
+    .navbar-links li {
+        width: 100%; /* Links take full width for tap area */
+    }
+    
+    .nav-icons li {
+        width: auto; /* Icons take only necessary width */
+    }
+    
+    /* Styling for links */
+    .navbar-links .navlink {
+        display: block; 
+        padding: 12px 20px; 
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .nav-icons .navlink {
+         /* Override the large padding from navbar-links */
+        display: block;
+        padding: 0; 
+        font-size: 18px; /* Slightly larger size for icons */
+        color: #fff;
+    }
+    
+    .navbar-links .navlink:hover,
+    .nav-icons .navlink:hover {
+        background: #064d73;
+        text-decoration: none;
+    }
+
+    /* Mobile Dropdown adjustments */
+    .nav-item-dropdown .dropdown-items {
+        position: static; 
+        box-shadow: none;
+        background: #064d73;
+        width: 100%;
+    }
+
+    .nav-item-dropdown .dropdown-items a {
+        color: #ffffff; 
+        padding: 10px 40px; 
+    }
+
+    .nav-item-dropdown:hover .dropdown-items {
+        display: none; 
+    }
+    
+    .nav-item-dropdown.active .dropdown-items {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Banner Section */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+/* Overlay */
+.banner-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 5%;
+}
+
+
+/* Content fixed on right */
+.banner-content {
+  max-width: 500px;
+  text-align: right;
+  animation: fadeInRight 1.5s ease forwards;
+}
+
+.banner-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+/* Buttons */
+.banner-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.btn-banner {
+  background: #09223d;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn-banner:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background: #28a745;
+}
+
+.btn-secondary:hover {
+  background: #1e7e34;
+}
+
+/* Arrows */
+.banner-arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  transform: translateY(-50%);
+}
+
+.banner-arrows span {
+  cursor: pointer;
+  font-size: 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 15px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.banner-arrows span:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-content {
+    text-align: center;
+    max-width: 90%;
+  }
+  .banner-buttons {
+    justify-content: center;
+  }
+  .banner-content h1 {
+    font-size: 1.8rem;
+  }
+  .banner-content p {
+    font-size: 1rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+.speciality-section {
+  text-align: center;
+  padding: 80px 20px;
+  
+  color: white;
+}
+
+.speciality-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.speciality-section .main-heading {
+  font-size: 40px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color:  #0a6fa1;
+}
+
+.speciality-section h4 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color:  black;
+}
+
+.speciality-section p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: gray
+}
+
+.learn-more-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+ 
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background:  #0a6fa1;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.half-width-img {
+  width: 100%;
+  overflow: hidden; /* ensures no extra space */
+}
+
+.half-width-img img {
+  width: 100%;           /* full width */
+  height: 300px;         /* half-height, adjust as needed */
+  object-fit: cover;     /* covers the container nicely */
+  display: block;
+}
