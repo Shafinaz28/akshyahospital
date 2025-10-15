@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Hospital - World Class Healthcare</title>
+    <title>Akshay Hospital - Hospital Wards</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -17,7 +17,11 @@
                         'logo-secondary': '#a3e635', // lime green
                         'logo-dark': '#831843', // dark pink
                         'cta-blue': '#007bff', // Main blue for CTAs/Hover
-                        'chat-blue': '#00c0ff', // Bright blue/teal for the Chat CTA
+                        'chat-whatsapp': '#25D366', // WhatsApp Green for floating CTA (Using consistent name)
+                        'emergency-red': '#E03137',
+                    },
+                    spacing: {
+                        '128': '32rem',
                     }
                 }
             }
@@ -41,7 +45,7 @@
 
         .dropdown-menu a:hover {
             background-color: #f3f4f6;
-            color: #1a1a1a;
+            color: #a3e635;
         }
 
         /* Mobile Menu Animation */
@@ -87,51 +91,36 @@
             margin-right: 0;
         }
 
-        /* ------------------------------------- */
-        /* --- SLIDESHOW ANIMATION --- */
-        /* ------------------------------------- */
-
-        @keyframes slide {
-            0% {
-                background-position: 0 0;
-            }
-
-            30% {
-                background-position: 0 0;
-            }
-
-            33.33% {
-                background-position: -100vw 0;
-            }
-
-            63.33% {
-                background-position: -100vw 0;
-            }
-
-            66.66% {
-                background-position: -200vw 0;
-            }
-
-            96.66% {
-                background-position: -200vw 0;
-            }
-
-            100% {
-                background-position: 0 0;
-            }
+        /* ==================================== */
+        /* FLOATING WHATSAPP CTA STYLES */
+        /* ==================================== */
+        #whatsapp-cta {
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
         }
 
-        .slideshow-background {
-            width: 300%;
-            height: 100%;
-            background-image:
-                url('path/to/surgical-bg-1.jpg'),
-                url('path/to/surgical-bg-2.jpg'),
-                url('path/to/surgical-bg-3.jpg');
-            background-size: 100vw 100%, 100vw 100%, 100vw 100%;
-            background-repeat: no-repeat;
-            background-position: 0 0, 100vw 0, 200vw 0;
-            animation: slide 15s infinite ease-in-out;
+        #whatsapp-cta:hover {
+            transform: scale(1.1);
+        }
+
+        /* ==================================== */
+        /* MODAL FIX: Constraining pop-up width */
+        /* ==================================== */
+        #contactModal>div {
+            max-width: 28rem;
+            width: 90%;
+            max-height: none;
+            overflow-y: auto;
+            transform: scale(1);
+            transition: transform 0.3s ease-out;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
@@ -145,11 +134,10 @@
         </button>
     </a>
 
-    <a href="https://wa.me/919876543210" target="_blank" class="fixed right-6 bottom-6 z-50">
-        <button
-            class="bg-logo-secondary text-logo-dark font-semibold py-3 px-6 rounded-lg shadow-xl hover:bg-lime-600 transition duration-300">
-            Chat With Us
-        </button>
+    <a href="https://wa.me/919876543210" target="_blank"
+        class="fixed right-6 bottom-6 z-50 p-3 bg-chat-whatsapp rounded-full shadow-xl" id="whatsapp-cta"
+        aria-label="Chat with us on WhatsApp">
+        <i data-feather="message-circle" class="w-7 h-7 text-white"></i>
     </a>
 
 
@@ -384,139 +372,106 @@
         </div>
     </header>
 
+    <section class="py-20 bg-gradient-to-b from-green-50 to-pink-50 text-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-<!-- ===== Wards Page ===== -->
-<section class="py-20 bg-gradient-to-b from-green-50 to-pink-50 text-gray-800">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-bold text-lime-600 mb-4">Hospital Wards</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                    Comfortable, clean, and patient-friendly wards designed to ensure the best recovery experience.
+                </p>
+            </div>
 
-    <!-- Title Section -->
-    <div class="text-center mb-14">
-      <h2 class="text-4xl md:text-5xl font-bold text-lime-600 mb-4">Hospital Wards</h2>
-      <p class="text-lg text-gray-700 max-w-2xl mx-auto">
-        Comfortable, clean, and patient-friendly wards designed to ensure the best recovery experience.
-      </p>
-    </div>
+            <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
+                <div>
+                    <img src="facilites/hospital-ward.jpg" alt="Hospital Ward" class="rounded-2xl shadow-lg w-full">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-4">About Our Wards</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Our hospital wards are thoughtfully designed to provide comfort and safety for patients.
+                        From general wards to deluxe private rooms, each facility is maintained with high hygiene standards
+                        and equipped with modern amenities to support fast and stress-free recovery.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> 24/7 nursing
+                            care and medical supervision</li>
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Spacious and
+                            well-ventilated rooms</li>
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Hygienic
+                            bedding and cleaning services</li>
+                        <li class="flex items-start"><span
+                                class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Separate
+                            wards for male and female patients</li>
+                    </ul>
+                </div>
+            </div>
 
-    <!-- About Section -->
-    <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
-      <div>
-        <img src="facilites/hospital-ward.jpg" alt="Hospital Ward" class="rounded-2xl shadow-lg w-full">
-      </div>
-      <div>
-        <h3 class="text-2xl font-semibold text-pink-600 mb-4">About Our Wards</h3>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          Our hospital wards are thoughtfully designed to provide comfort and safety for patients. 
-          From general wards to deluxe private rooms, each facility is maintained with high hygiene standards 
-          and equipped with modern amenities to support fast and stress-free recovery.
-        </p>
-        <ul class="space-y-3">
-          <li class="flex items-start"><span class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> 24/7 nursing care and medical supervision</li>
-          <li class="flex items-start"><span class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Spacious and well-ventilated rooms</li>
-          <li class="flex items-start"><span class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Hygienic bedding and cleaning services</li>
-          <li class="flex items-start"><span class="bg-lime-100 text-lime-600 px-2 py-1 rounded-full mr-3 mt-1">✔</span> Separate wards for male and female patients</li>
-        </ul>
-      </div>
-    </div>
+            <div class="mb-16">
+                <h3 class="text-3xl font-semibold text-center text-pink-600 mb-10">Types of Wards Available</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-lime-400 hover:shadow-xl transition">
+                        <h4 class="text-xl font-semibold mb-3 text-lime-600">General Ward</h4>
+                        <p class="text-gray-700">
+                            Spacious, affordable, and clean shared ward with full nursing support and comfort facilities.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-pink-400 hover:shadow-xl transition">
+                        <h4 class="text-xl font-semibold mb-3 text-pink-600">Semi-Private Ward</h4>
+                        <p class="text-gray-700">
+                            Two or three beds per room with privacy partitions, attached washroom, and AC facilities.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-lime-400 hover:shadow-xl transition">
+                        <h4 class="text-xl font-semibold mb-3 text-lime-600">Private/Deluxe Room</h4>
+                        <p class="text-gray-700">
+                            Fully private, air-conditioned rooms with TV, Wi-Fi, attendant sofa, and personalized care.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Types of Wards Section -->
-    <div class="mb-16">
-      <h3 class="text-3xl font-semibold text-center text-pink-600 mb-10">Types of Wards Available</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-lime-400 hover:shadow-xl transition">
-          <h4 class="text-xl font-semibold mb-3 text-lime-600">General Ward</h4>
-          <p class="text-gray-700">
-            Spacious, affordable, and clean shared ward with full nursing support and comfort facilities.
-          </p>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-pink-400 hover:shadow-xl transition">
-          <h4 class="text-xl font-semibold mb-3 text-pink-600">Semi-Private Ward</h4>
-          <p class="text-gray-700">
-            Two or three beds per room with privacy partitions, attached washroom, and AC facilities.
-          </p>
-        </div>
-        <div class="bg-white rounded-2xl shadow-md p-6 border-t-4 border-lime-400 hover:shadow-xl transition">
-          <h4 class="text-xl font-semibold mb-3 text-lime-600">Private/Deluxe Room</h4>
-          <p class="text-gray-700">
-            Fully private, air-conditioned rooms with TV, Wi-Fi, attendant sofa, and personalized care.
-          </p>
-        </div>
-      </div>
-    </div>
+            <div class="bg-white rounded-3xl shadow-lg p-10 mb-16">
+                <h3 class="text-3xl font-semibold text-center text-lime-700 mb-8">Facilities & Comfort</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <ul class="space-y-4 text-gray-700">
+                        <li>💚 24/7 doctor and nurse availability</li>
+                        <li>💗 In-room meal service and diet plans</li>
+                        <li>💚 LED TV and high-speed Wi-Fi</li>
+                        <li>💗 Housekeeping and daily sanitization</li>
+                    </ul>
+                    <ul class="space-y-4 text-gray-700">
+                        <li>💚 Visitor lounge and waiting area</li>
+                        <li>💗 Attached washrooms and patient locker</li>
+                        <li>💚 Nurse call system and oxygen supply</li>
+                        <li>💗 Emergency response within seconds</li>
+                    </ul>
+                </div>
+            </div>
 
-    <!-- Facilities Section -->
-    <div class="bg-white rounded-3xl shadow-lg p-10 mb-16">
-      <h3 class="text-3xl font-semibold text-center text-lime-700 mb-8">Facilities & Comfort</h3>
-      <div class="grid md:grid-cols-2 gap-8">
-        <ul class="space-y-4 text-gray-700">
-          <li>💚 24/7 doctor and nurse availability</li>
-          <li>💗 In-room meal service and diet plans</li>
-          <li>💚 LED TV and high-speed Wi-Fi</li>
-          <li>💗 Housekeeping and daily sanitization</li>
-        </ul>
-        <ul class="space-y-4 text-gray-700">
-          <li>💚 Visitor lounge and waiting area</li>
-          <li>💗 Attached washrooms and patient locker</li>
-          <li>💚 Nurse call system and oxygen supply</li>
-          <li>💗 Emergency response within seconds</li>
-        </ul>
-      </div>
-    </div>
+            <div class="mb-16 text-center">
+                <h3 class="text-3xl font-semibold text-pink-600 mb-8">Our Ward Gallery</h3>
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+                    <img src="facilites/ward1.jpg" alt="Ward 1"
+                        class="rounded-2xl shadow-md hover:scale-105 transition duration-300">
+                    <img src="facilites/ward2.jpg" alt="Ward 2"
+                        class="rounded-2xl shadow-md hover:scale-105 transition duration-300">
+                    <img src="facilites/ward3.jpg" alt="Ward 3"
+                        class="rounded-2xl shadow-md hover:scale-105 transition duration-300">
+                </div>
+            </div>
 
-    <!-- Gallery Section -->
-    <div class="mb-16 text-center">
-      <h3 class="text-3xl font-semibold text-pink-600 mb-8">Our Ward Gallery</h3>
-      <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-        <img src="facilites/ward1.jpg" alt="Ward 1" class="rounded-2xl shadow-md hover:scale-105 transition duration-300">
-        <img src="facilites/ward2.jpg" alt="Ward 2" class="rounded-2xl shadow-md hover:scale-105 transition duration-300">
-        <img src="facilites/ward3.jpg" alt="Ward 3" class="rounded-2xl shadow-md hover:scale-105 transition duration-300">
-      </div>
-    </div>
+          
 
-    <!-- Booking Section -->
-    <div class="bg-gradient-to-r from-pink-200 to-lime-200 rounded-3xl p-10 text-center shadow-lg">
-      <h3 class="text-3xl font-semibold text-gray-800 mb-4">Book Your Ward Room</h3>
-      <p class="text-gray-700 mb-6">
-        Choose from a range of comfortable wards and rooms designed to meet your medical needs.
-      </p>
-      <a href="contact.html" class="inline-block bg-pink-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-lime-600 transition">
-        Book Now
-      </a>
-    </div>
-
-  </div>
-</section>
-
-
-
-   
-<!-- Booking Form Section -->
- <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-semibold text-pink-700 mb-6">Book Your Online Consultation</h2>
-            <form id="onlineConsultationForm" action="" method="POST"
-                class="grid md:grid-cols-2 gap-6 bg-white p-8 rounded-2xl shadow">
-                <input type="hidden" name="formType" value="onlineConsultationForm">
-                <input type="text" name="name" placeholder="Full Name" class="p-3 border rounded-lg" required>
-                <input type="email" name="email" placeholder="Email Address" class="p-3 border rounded-lg" required>
-                <input type="tel" name="phone" placeholder="Phone Number" class="p-3 border rounded-lg" required>
-                <select name="specialization" class="p-3 border rounded-lg" required>
-                    <option value="">Select Specialization</option>
-                    <option value="General Medicine">General Medicine</option>
-                    <option value="Dermatology">Dermatology</option>
-                    <option value="Pediatrics">Pediatrics</option>
-                    <option value="Gynecology">Gynecology</option>
-                    <option value="Orthopedics">Orthopedics</option>
-                    <option value="Cardiology">Cardiology</option>
-                </select>
-                <textarea name="message" placeholder="Describe Your Health Concern"
-                    class="md:col-span-2 p-3 border rounded-lg h-32" required></textarea>
-                <button type="submit"
-                    class="md:col-span-2 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-lg shadow">
-                    Book Appointment
-                </button>
-            </form>
         </div>
     </section>
+
 
 
 
@@ -614,51 +569,71 @@
         </div>
     </footer>
 
-
     <div id="contactModal"
         class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative mx-4 my-8">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 relative mx-4 my-6">
 
             <button id="closeModal"
                 class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
 
-            <h2 class="text-2xl font-bold text-lime-600 mb-6 text-center">Contact Akshaya Hospital</h2>
+            <div class="text-center mb-5">
+                
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Book Your Visit</h2>
+                <p class="text-gray-600 font-medium text-sm">Let's find your preferred appointment time</p>
+            </div>
 
             <form id="contactForm" class="space-y-4">
                 <input type="hidden" name="formType" value="popupForm">
-
+                
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupName">Full Name</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
+                        <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Full Name
+                    </label>
                     <input type="text" id="popupName" name="name" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupEmail">Email Address</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
+                        <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Email Address
+                    </label>
                     <input type="email" id="popupEmail" name="email" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupPhone">Phone Number</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
+                        <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Phone Number
+                    </label>
                     <input type="tel" id="popupPhone" name="phone" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupMessage">Message</label>
-                    <textarea id="popupMessage" name="message" rows="4" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"></textarea>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
+                        <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Message (Optional)
+                    </label>
+                    <textarea id="popupMessage" name="message" rows="3" 
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-lime-600 hover:bg-pink-600 text-white font-bold py-3 rounded-lg transition duration-300">Send
-                    Message</button>
+                    class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
+                    Send Request
+                </button>
             </form>
+            
+            <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
+                <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
+                Your information is secure with us
+            </p>
 
         </div>
     </div>
-
 
     <script>
         // ---------- CONFIGURATION ----------
@@ -669,12 +644,21 @@
         const modal = document.getElementById('contactModal');
         const closeModalBtn = document.getElementById('closeModal');
         const contactForm = document.getElementById('contactForm'); // Popup form
-        const contactPageForm = document.getElementById('contactPageForm'); // Main contact page form
+        const contactPageForm = document.getElementById('contactPageForm'); // Main contact page form (not on this page)
         const onlineConsultationForm = document.getElementById('onlineConsultationForm'); // Telemedicine form
 
-        // Buttons that open popup
-        const openModalRight = document.getElementById('open-appointment-modal-right');
-        const openModalHeader = document.getElementById('open-appointment-modal-header');
+        // Buttons that open popup (CORRECTED REFERENCES)
+        const openModalVertical = document.getElementById('open-appointment-modal-right'); // <-- Targets vertical CTA
+        const openModalHeader = document.getElementById('open-appointment-modal-header'); // <-- Targets header button
+        const openModalContent = document.querySelector('.bg-gradient-to-r a[href="#"]'); // <-- Targets the "Book Now" link in the page content (best practice is an ID, but fixing the current HTML structure)
+
+        // Give the final 'Book Now' button a dedicated ID if it doesn't already have one, for better targeting.
+        const contentBookingLink = document.querySelector('.bg-gradient-to-r a.inline-block');
+        if (contentBookingLink) {
+            contentBookingLink.id = "open-wards-appointment-modal"; // Assigning a temporary ID if not present
+        }
+        const openModalWards = document.getElementById('open-wards-appointment-modal');
+
 
         // ---------- POPUP CONTROL ----------
         function showModal() {
@@ -689,14 +673,27 @@
             modal.classList.remove('opacity-100', 'visible');
         }
 
-        // Event listeners for popup buttons
-        if (openModalRight) openModalRight.addEventListener('click', e => { e.preventDefault(); showModal(); });
-        if (openModalHeader) openModalHeader.addEventListener('click', e => { e.preventDefault(); showModal(); });
+        // Event listeners for popup buttons (FIXED HERE)
+        if (openModalVertical) openModalVertical.addEventListener('click', e => {
+            e.preventDefault();
+            showModal();
+        });
+        if (openModalHeader) openModalHeader.addEventListener('click', e => {
+            e.preventDefault();
+            showModal();
+        });
+        if (openModalWards) openModalWards.addEventListener('click', e => {
+            e.preventDefault();
+            showModal();
+        }); // Listener for the main 'Book Now' button in the wards content
+
         if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-        if (modal) modal.addEventListener('click', e => { if (e.target === modal) hideModal(); });
-        
+        if (modal) modal.addEventListener('click', e => {
+            if (e.target === modal) hideModal();
+        });
+
         // Auto show popup every 20 seconds
-        setInterval(showModal, 20000);
+        // setInterval(showModal, 20000);
 
         // ---------- FORM SUBMISSION HANDLER (Generic Function) ----------
         async function handleFormSubmission(e, formElement, redirect = false) {
@@ -722,17 +719,19 @@
                 const res = await fetch(WEB_APP_URL, {
                     method: "POST",
                     body: params,
-                    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+                    }
                 });
 
                 const data = await res.json();
 
                 if (data.result === "success") {
-                    
+
                     if (redirect) {
                         // Redirect for the main forms
                         alert("✅ Message sent successfully!");
-                       
+
                     } else {
                         // Standard popup success message and reset
                         alert("✅ Message sent successfully!");

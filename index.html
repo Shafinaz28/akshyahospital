@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akshay Hospital - World Class Healthcare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-
-    <script>
+  <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'logo-primary': '#f43f8c', // pink
-                        'logo-secondary': '#a3e635', // lime green
-                        'logo-dark': '#831843', // dark pink
-                        'cta-blue': '#007bff', // Main blue for CTAs/Hover
-                        'chat-blue': '#00c0ff', // Bright blue/teal for the Chat CTA
+                        'logo-primary': '#f43f8c', // Pink
+                        'logo-secondary': '#84cc16', // LIME GREEN: Updated to #84cc16
+                        'logo-dark': '#831843', // Dark Pink
+                        'cta-blue': '#007bff',
+                        'chat-whatsapp': '#25D366', // WhatsApp Green for floating CTA
+                        'emergency-red': '#E03137', // A slightly deeper, professional red for the banner
+                    },
+                    spacing: {
+                        '128': '32rem',
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Dropdown Transition (Desktop) */
+        /* ==================================== */
+        /* BASE & NAVIGATION STYLES */
+        /* ==================================== */
         .dropdown-menu {
             transition: all 0.3s ease;
             opacity: 0;
@@ -43,11 +44,10 @@
 
         .dropdown-menu a:hover {
             background-color: #f3f4f6;
-            /* Changed hover color to match logo-secondary for consistency */
-            color: #a3e635; 
+            /* Updated to new lime green for consistency */
+            color: #84cc16; 
         }
 
-        /* Mobile Menu Animation */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -60,7 +60,6 @@
             transition: max-height 0.5s ease-in;
         }
 
-        /* Custom style for the vertical CTA button */
         .vertical-cta {
             transform: rotate(90deg) translate(50%, 0);
             transform-origin: 100% 0;
@@ -70,82 +69,186 @@
             line-height: 1;
         }
 
-        /* Icon rotation for mobile dropdowns */
-        .specialities-mobile-dropdown i {
-            transition: transform 0.3s ease;
-        }
-
-        /* Custom logo style */
+        /* Logo size adjustments */
         .akshaya-logo {
             display: flex;
             align-items: center;
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
         }
 
         .akshaya-logo img {
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
             object-fit: contain;
             margin-right: 0;
         }
+
+        /* ==================================== */
+        /* FLOATING CTA STYLES */
+        /* ==================================== */
+        #whatsapp-cta {
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        #whatsapp-cta:hover {
+            transform: scale(1.1);
+        }
         
-        /*
-         * CUSTOM ANIMATIONS FOR HERO SECTION 
-         */
-        
-        /* Keyframes */
+        /* ==================================== */
+        /* HERO BACKGROUND IMAGE STYLES (NEW) */
+        /* ==================================== */
+        .bg-hero-image {
+            /* REPLACE THIS URL with your actual background image path */
+            background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0MTUwMzZ8MHwxfHNlYXJjaHw0fHxoZWFsdGhjYXJlJTIwaG9zcGl0YWwlMjBsaWZlfHxlbnwwfDB8fHww&ixlib=rb-4.0.3&q=80&w=1080'); 
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed; 
+        }
+
+        /* ==================================== */
+        /* ANIMATIONS (Kept for text elements) */
+        /* ==================================== */
         @keyframes fadeSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes buttonPulse {
-            0% {
-                /* Use logo-primary color for the shadow pulse */
-                box-shadow: 0 0 0 0 rgba(244, 63, 140, 0.7); 
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(244, 63, 140, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(244, 63, 140, 0);
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 140, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(244, 63, 140, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(244, 63, 140, 0); }
+        }
+
+        .animate-fade-slide { animation: fadeSlide 0.8s ease-out forwards; }
+        .animate-text-block-fade { animation: fadeSlide 0.8s ease-out 0.4s forwards; opacity: 0; }
+        .animate-button-pulse { animation: buttonPulse 2.5s infinite; }
+
+
+        /* ==================================== */
+        /* MODAL FIX: Constraining pop-up width */
+        /* ==================================== */
+        #contactModal > div {
+            max-width: 28rem; 
+            width: 90%; 
+            max-height: none; 
+            overflow-y: auto; 
+            transform: scale(1);
+            transition: transform 0.3s ease-out;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <style>
+        /* Hero slider styles */
+        .hero-slider {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-1 {
+            background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+        
+        .slide-2 {
+            background-image: url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+        
+        .slide-3 {
+            background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+        
+        /* Overlay for better text visibility */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-overlay {
+                background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
             }
         }
 
-        @keyframes slowFadeIn {
-            from {
-                opacity: 0.8;
-            }
-            to {
-                opacity: 1;
-            }
+        /* Animation styles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Utility Classes */
-        .animate-fade-slide {
-            animation: fadeSlide 0.8s ease-out forwards;
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-
-        .animate-text-block-fade {
-            /* Staggered entry */
-            animation: fadeSlide 0.8s ease-out 0.4s forwards;
-            opacity: 0; 
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
         }
-
-        .animate-button-pulse {
-            animation: buttonPulse 2.5s infinite; /* Slower, more subtle pulse */
+        
+        .animate-delay-1 {
+            animation-delay: 0.3s;
         }
-
-        .animate-slow-fade-in {
-            /* For the Vanta.js wrapper */
-            animation: slowFadeIn 2s ease-out; 
+        
+        .animate-delay-2 {
+            animation-delay: 0.6s;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Slider controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            /* Changed from #3b82f6 to the new logo-secondary color for consistency */
+            background-color: #84cc16; 
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -160,12 +263,12 @@
         </button>
     </a>
 
-    <a href="#chat-widget" class="fixed right-6 bottom-6 z-50">
-        <button
-            class="bg-logo-secondary text-logo-dark font-semibold py-3 px-6 rounded-lg shadow-xl hover:bg-lime-600 transition duration-300">
-            Chat With Us
-        </button>
+    <a href="https://wa.me/911234567890" target="_blank"
+        class="fixed right-6 bottom-6 z-50 p-3 bg-chat-whatsapp rounded-full shadow-xl" id="whatsapp-cta"
+        aria-label="Chat with us on WhatsApp">
+        <i data-feather="message-circle" class="w-7 h-7 text-white"></i>
     </a>
+
 
     <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
 
@@ -177,14 +280,14 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-6">
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="phone" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Emergency</p>
                         <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 1234567890</a>
                     </div>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="mail" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Email</p>
@@ -192,7 +295,7 @@
                             class="font-bold text-logo-primary">akshayahospitals03@gmail.com</a>
                     </div>
                 </div>
-                <a href="#appointment"
+                <a href="#" id="open-appointment-modal-header"
                     class="bg-logo-primary hover:bg-logo-dark text-white px-4 py-2 rounded-md transition duration-300">
                     Make Appointment
                 </a>
@@ -203,11 +306,9 @@
             </button>
         </div>
 
-        <div class="hidden md:block bg-lime-500 shadow-md">
-            <div class="container mx-auto px-4 py-4">
-
+        <div class="hidden md:block bg-logo-secondary shadow-md"> 
+            <div class="container mx-auto px-4 py-3">
                 <div class="w-full flex justify-between items-center">
-
                     <nav class="flex items-center space-x-6 text-white text-base font-medium">
                         <a href="index.html" class="hover:text-gray-900 transition duration-300">Home</a>
                         <a href="about.html" class="hover:text-gray-900 transition duration-300">About Us</a>
@@ -219,30 +320,30 @@
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
                                 <a href="general-medicine.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">General Medicine</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">General Medicine</a>
                                 <a href="gastroenterology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Gastroenterology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Gastroenterology</a>
                                 <a href="laparoscopic-surgery.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Laparoscopic Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Laparoscopic Surgery</a>
                                 <a href="surgery.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Surgery</a>
                                 <a href="Obstetrics-Gynaecology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Obstetrics/Gynaecology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Obstetrics/Gynaecology</a>
                                 <a href="accident-emergency.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Accident & Emergency</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Accident & Emergency</a>
                                 <a href="orthopedics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Orthopedics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Orthopedics</a>
                                 <a href="Paediatrics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Paediatrics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Paediatrics</a>
                                 <a href="ICU-Critical-Care.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">ICU & Critical Care</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">ICU & Critical Care</a>
                                 <a href="Neonatology-NICU.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neonatology and NICU</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neonatology and NICU</a>
                                 <a href="Rehabilitation.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Rehabilitation</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Rehabilitation</a>
                                 <a href="Neurology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neurology</a>
-                            </div>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neurology</a>
+                                    </div>
                         </div>
 
                         <a href="doctors.html" class="hover:text-gray-900">Doctors</a>
@@ -254,7 +355,6 @@
                             </a>
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
-
                                 <a href="facilities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
                                     Facilities</a>
                                 <a href="telemedicine&video-cosultation.html"
@@ -397,30 +497,25 @@
         </div>
     </header>
 
-
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden bg-gray-50">
-
-        <div class="absolute inset-0">
-            <div id="vanta-bg" class="absolute inset-0 animate-slow-fade-in"></div>
-            
-            <div
-                class="absolute inset-0 bg-white opacity-90 md:bg-gradient-to-r from-white/95 via-white/80 to-transparent">
-            </div>
-            
-            <div class="absolute top-0 h-4 w-full bg-logo-secondary md:hidden"></div>
-        </div>
-
+     <section class="hero-slider relative min-h-[90vh] flex items-center overflow-hidden bg-gray-50">
+        <div class="slide slide-1 active"></div>
+        
+        <div class="slide slide-2"></div>
+        
+        <div class="slide slide-3"></div>
+        
+        <div class="hero-overlay"></div>
+        
         <div class="container mx-auto px-4 py-20 relative z-10 md:w-3/5 lg:w-1/2">
-
-            <p class="text-xl font-semibold text-logo-secondary mb-3 animate-pulse">
+            <p class="text-xl font-semibold text-logo-secondary mb-3 animate-fade-in">
                 Your Health, Our Priority
             </p>
 
-            <h1 class="text-6xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 animate-fade-slide">
+            <h1 class="text-6xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 animate-fade-in animate-delay-1">
                 We Take Care of You and <span class="text-logo-primary">Everything Else</span>
             </h1>
 
-            <div class="animate-text-block-fade">
+            <div class="animate-fade-in animate-delay-2">
                 <p class="text-2xl text-gray-700 mb-10 max-w-lg border-l-4 border-logo-primary pl-4">
                     Experience World-Class Healthcare with Compassion and Excellence.
                 </p>
@@ -428,33 +523,87 @@
 
             <a href="#" id="open-appointment-modal-hero"
                 class="inline-block px-10 py-4 text-xl font-bold rounded-xl shadow-xl transition duration-300 transform hover:scale-105
-                        bg-logo-primary text-white hover:bg-logo-dark
-                        animate-button-pulse">
+                       bg-logo-primary text-white hover:bg-logo-dark animate-pulse animate-fade-in animate-delay-2">
                 Book an Appointment Today
             </a>
         </div>
-
+        
+        <div class="slider-controls">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
     </section>
+
     <script>
-        // FIX: Add event listener for the new hero button
+        // Hero slider functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Show current slide
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            // Auto slide change
+            function nextSlide() {
+                let nextIndex = (currentSlide + 1) % slides.length;
+                showSlide(nextIndex);
+            }
+            
+            // Set interval for auto sliding (every 5 seconds)
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // Dot click handlers
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    clearInterval(slideInterval);
+                    showSlide(parseInt(this.dataset.slide));
+                    // Restart auto sliding
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
+            
+            // Pause on hover
+            const slider = document.querySelector('.hero-slider');
+            slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            slider.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
+        });
+    </script>
+
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const openModalHero = document.getElementById('open-appointment-modal-hero');
+            const openModalHeader = document.getElementById('open-appointment-modal-header'); // New ID for header button
+
+            function handleModalClick(e) {
+                e.preventDefault();
+                if (typeof showModal === 'function') {
+                    showModal();
+                } else {
+                    document.querySelector('#appointment').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
             if (openModalHero) {
-                // Assuming showModal() is defined in your existing main script block
-                openModalHero.addEventListener('click', e => {
-                    e.preventDefault();
-                    // Call the function for the popup form
-                    if (typeof showModal === 'function') {
-                        showModal();
-                    } else {
-                        // Fallback, should scroll to the inline form
-                        document.querySelector('#appointment').scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
+                openModalHero.addEventListener('click', handleModalClick);
+            }
+            if (openModalHeader) { // Attach handler to the header button
+                openModalHeader.addEventListener('click', handleModalClick);
             }
         });
     </script>
-    
+
+
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
@@ -575,7 +724,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="" alt="Dr. Sharma" class="w-full h-64 object-cover">
+                    <img src="http://static.photos/people/320x240/1" alt="Dr. Sharma" class="w-full h-64 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800">Dr. Rajesh Sharma</h3>
                         <p class="text-logo-primary mb-2">Cardiologist</p>
@@ -590,7 +739,7 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="" alt="Dr. Patel" class="w-full h-64 object-cover">
+                    <img src="http://static.photos/people/320x240/2" alt="Dr. Patel" class="w-full h-64 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800">Dr. Priya Patel</h3>
                         <p class="text-logo-primary mb-2">Neurologist</p>
@@ -605,7 +754,7 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="" alt="Dr. Kumar" class="w-full h-64 object-cover">
+                    <img src="http://static.photos/people/320x240/3" alt="Dr. Kumar" class="w-full h-64 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800">Dr. Amit Kumar</h3>
                         <p class="text-logo-primary mb-2">Orthopedic Surgeon</p>
@@ -620,7 +769,7 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="" alt="Dr. Gupta" class="w-full h-64 object-cover">
+                    <img src="http://static.photos/people/320x240/4" alt="Dr. Gupta" class="w-full h-64 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800">Dr. Neha Gupta</h3>
                         <p class="text-logo-primary mb-2">Pediatrician</p>
@@ -812,9 +961,9 @@
                         <h3 class="text-xl font-semibold text-gray-800 mt-2 mb-3">10 Tips for a Healthy Heart</h3>
                         <p class="text-gray-600 mb-4">Learn simple lifestyle changes that can significantly improve
                             your cardiovascular health and reduce heart disease risk.</p>
-                        <!-- <a href="#" class="text-logo-primary font-semibold hover:underline flex items-center">
+                        <a href="#" class="text-logo-primary font-semibold hover:underline flex items-center">
                             Read More <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
-                        </a> -->
+                        </a>
                     </div>
                 </div>
 
@@ -826,9 +975,9 @@
                         <p class="text-gray-600 mb-4">Effective strategies and treatments for dealing with
                             persistent
                             back pain and improving your quality of life.</p>
-                        <!-- <a href="#" class="text-logo-primary font-semibold hover:underline flex items-center">
+                        <a href="#" class="text-logo-primary font-semibold hover:underline flex items-center">
                             Read More <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
-                        </a> -->
+                        </a>
                     </div>
                 </div>
 
@@ -841,9 +990,9 @@
                         </h3>
                         <p class="text-gray-600 mb-4">A complete guide to recommended immunizations for children at
                             different stages of their growth and development.</p>
-                        <!-- <a href="#" class="text-logo-primary font-semibold hover:underline flex items-center">
+                        <a href="#" class="text-logo-primary font-semibold hover:underline flex items-center">
                             Read More <i data-feather="arrow-right" class="w-4 h-4 ml-2"></i>
-                        </a> -->
+                        </a>
                     </div>
                 </div>
             </div>
@@ -857,7 +1006,7 @@
         </div>
     </section>
 
-    <section class="py-16 bg-red-600 text-white">
+    <section class="py-16 bg-logo-primary text-white">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-6">24/7 Emergency Services</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Our emergency department is staffed round the clock with
@@ -865,11 +1014,11 @@
                 doctors and equipped with life-saving technology.</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="tel:+911234567890"
-                    class="bg-white text-red-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300 flex items-center">
+                    class="bg-white text-logo-primary px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300 flex items-center">
                     <i data-feather="phone" class="mr-2"></i> Call Emergency
                 </a>
                 <a href="contact.html"
-                    class="border-2 border-white px-6 py-3 rounded-md font-semibold hover:bg-red-700 transition duration-300">
+                    class="border-2 border-white px-6 py-3 rounded-md font-semibold hover:bg-logo-dark transition duration-300">
                     Learn About Emergency Services
                 </a>
             </div>
@@ -958,7 +1107,7 @@
 
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 Akshay Hospital. All Rights Reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Akshay Hospital. All Rights Reserved.</p>
                     <div class="flex space-x-6">
                         <a href="privacy.html" class="text-gray-400 hover:text-logo-primary">Privacy Policy</a>
                         <a href="terms.html" class="text-gray-400 hover:text-logo-primary">Terms of Service</a>
@@ -968,56 +1117,76 @@
             </div>
         </div>
     </footer>
-    
-    <div id="contactModal"
-        class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative mx-4 my-8">
 
-            <button id="closeModal"
-                class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+<div id="contactModal"
+    class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
+    <div class="bg-white rounded-2xl shadow-xl w-full p-6 relative mx-4 my-6">
 
-            <h2 class="text-2xl font-bold text-lime-600 mb-6 text-center">Contact Akshaya Hospital</h2>
+        <button id="closeModal"
+            class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
 
-            <form id="contactForm" class="space-y-4">
-                <input type="hidden" name="formType" value="popupForm">
-
-                <div>
-                    <label class="block text-gray-700 mb-2" for="popupName">Full Name</label>
-                    <input type="text" id="popupName" name="name" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 mb-2" for="popupEmail">Email Address</label>
-                    <input type="email" id="popupEmail" name="email" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 mb-2" for="popupPhone">Phone Number</label>
-                    <input type="tel" id="popupPhone" name="phone" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
-                </div>
-
-                <div>
-                    <label class="block text-gray-700 mb-2" for="popupMessage">Message</label>
-                    <textarea id="popupMessage" name="message" rows="4" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
-                </div>
-
-                <button type="submit"
-                    class="w-full bg-lime-600 hover:bg-pink-600 text-white font-bold py-3 rounded-lg">Send
-                    Message</button>
-            </form>
-
+        <div class="text-center mb-5">
+            
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Get Started</h2>
+            <p class="text-gray-600 font-medium text-sm">Let's find your dream property together</p>
         </div>
-    </div>
+        <form id="contactForm" class="space-y-4">
+            
+            <div>
+                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
+                    <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                    Full Name
+                </label>
+                <input type="text" id="popupName" name="name" required
+                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
+                    <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                    Email Address
+                </label>
+                <input type="email" id="popupEmail" name="email" required
+                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
+                    <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                    Phone Number
+                </label>
+                <input type="tel" id="popupPhone" name="phone" required
+                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
+                    <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                    Message
+                </label>
+                <textarea id="popupMessage" name="message" rows="3" required
+                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
+                Send Message
+            </button>
+        </form>
+        
+        <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
+            <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
+            Your information is secure with us
+        </p>
+        </div>
+</div>
+
 
     <script>
-        // ---------- WEB APP URL ----------
+        // ---------- WEB APP URL (For form submission) ----------
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwjHDAS7AUpUyr7fvgbvlyp_DndgN6apFYsQt57Wt9TFmCdfbzmzv-2w9GxZg7gLDuI0w/exec";
 
-        // ---------- POPUP FORM ----------
+        // ---------- POPUP MODAL LOGIC ----------
         const modal = document.getElementById('contactModal');
         const closeModalBtn = document.getElementById('closeModal');
         const contactForm = document.getElementById('contactForm');
@@ -1032,13 +1201,13 @@
             modal.classList.remove('opacity-100', 'visible');
         }
 
-        // Note: The click listener for 'open-appointment-modal-hero' is right above the 'Why Choose' section.
         closeModalBtn.addEventListener('click', hideModal);
         modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
         // Show popup every 20 seconds
         setInterval(showModal, 20000);
 
+        // POPUP FORM SUBMISSION
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = {
@@ -1048,7 +1217,7 @@
                 message: document.getElementById('popupMessage').value,
                 formType: "popupForm"
             };
-
+            
             const params = new URLSearchParams();
             for (const key in formData) params.append(key, formData[key]);
 
@@ -1072,7 +1241,7 @@
             }
         });
 
-        // ---------- MAIN APPOINTMENT FORM ----------
+        // ---------- MAIN APPOINTMENT FORM SUBMISSION ----------
         const appointmentForm = document.getElementById('appointmentForm');
 
         appointmentForm.addEventListener('submit', async (e) => {
@@ -1085,7 +1254,7 @@
                 message: document.getElementById('message').value,
                 formType: "appointmentForm"
             };
-
+            
             const params = new URLSearchParams();
             for (const key in formData) params.append(key, formData[key]);
 
@@ -1108,7 +1277,7 @@
             }
         });
     </script>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1120,13 +1289,12 @@
                     mobileMenu.classList.toggle('open');
                     const icon = mobileMenuButton.querySelector('i');
                     const isOpen = mobileMenu.classList.contains('open');
-                    // Change icon from menu to 'x' when open
                     icon.setAttribute('data-feather', isOpen ? 'x' : 'menu');
                     feather.replace();
                 });
             }
 
-            // --- 2. Mobile Dropdown Toggles (Specialities and Facilities) ---
+            // --- 2. Mobile Dropdown Toggles ---
             function setupDropdownToggle(toggleId, listId) {
                 const toggleButton = document.getElementById(toggleId);
                 const dropdownList = document.getElementById(listId);
@@ -1134,68 +1302,40 @@
                 if (toggleButton && dropdownList) {
                     toggleButton.addEventListener('click', function (e) {
                         e.preventDefault();
-
                         dropdownList.classList.toggle('hidden');
-
                         const chevronIcon = toggleButton.querySelector('i');
                         if (chevronIcon) {
                             const isHidden = dropdownList.classList.contains('hidden');
-                            // Rotate icon 180 degrees when open
                             chevronIcon.classList.toggle('rotate-180', !isHidden);
                         }
                     });
                 }
             }
 
-            // Apply the Dropdown Toggle to Both Mobile Sections
             setupDropdownToggle('specialities-toggle', 'specialities-list');
             setupDropdownToggle('facilities-toggle', 'facilities-list');
 
-            // --- 3. Placeholder for Appointment Modal Logic (Not needed since it uses the popup now) ---
-            // Removed original modal logic to use the new popup one.
-
-            // --- 4. Initial Feather Icons Rendering & Footer Year ---
+            // --- 3. Initial Feather Icons Rendering ---
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
-            // Note: Removed the footer year update as there was no element with id="year" in the footer.
         });
     </script>
 
     <script>
-        // Initialize Vanta.js background
-        VANTA.WAVES({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            // color: 0x831843 (logo-dark), matches the existing setting
-            color: 0x831843, 
-            shininess: 35.00,
-            waveHeight: 15.00,
-            waveSpeed: 0.80,
-            zoom: 0.65
-        });
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Ensure default link behavior is NOT prevented for the `#` used in the main hero button, 
-                // as that button is handled separately to open the modal/scroll.
-                if (this.id !== 'open-appointment-modal-hero') { 
-                     e.preventDefault();
-                     document.querySelector(this.getAttribute('href')).scrollIntoView({
+                // Ignore the modal buttons as they are handled above
+                if (this.id !== 'open-appointment-modal-hero' && this.id !== 'open-appointment-modal-header') { 
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
                 }
             });
         });
-
-    </script>
+    </script>  
 </body>
 
 </html>

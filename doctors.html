@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Hospital - World Class Healthcare</title>
+    <title>Akshay Hospital - Dr. Priya Sharma</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-
-    <script>
+  <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'logo-primary': '#f43f8c', // pink
-                        'logo-secondary': '#a3e635', // lime green
-                        'logo-dark': '#831843', // dark pink
-                        'cta-blue': '#007bff', // Main blue for CTAs/Hover
-                        'chat-blue': '#00c0ff', // Bright blue/teal for the Chat CTA
+                        'logo-primary': '#f43f8c', // Pink
+                        'logo-secondary': '#84cc16', // LIME GREEN: Updated to #84cc16
+                        'logo-dark': '#831843', // Dark Pink
+                        'cta-blue': '#007bff',
+                        'chat-whatsapp': '#25D366', // WhatsApp Green for floating CTA
+                        'emergency-red': '#E03137', // A slightly deeper, professional red for the banner
+                    },
+                    spacing: {
+                        '128': '32rem',
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Dropdown Transition (Desktop) */
+        /* ==================================== */
+        /* BASE & NAVIGATION STYLES */
+        /* ==================================== */
         .dropdown-menu {
             transition: all 0.3s ease;
             opacity: 0;
@@ -41,10 +44,9 @@
 
         .dropdown-menu a:hover {
             background-color: #f3f4f6;
-            color: #00ff4c;
+            color: #84cc16; /* Using updated logo-secondary color */
         }
 
-        /* Mobile Menu Animation */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -57,7 +59,6 @@
             transition: max-height 0.5s ease-in;
         }
 
-        /* Custom style for the vertical CTA button */
         .vertical-cta {
             transform: rotate(90deg) translate(50%, 0);
             transform-origin: 100% 0;
@@ -67,112 +68,101 @@
             line-height: 1;
         }
 
-        /* Icon rotation for mobile dropdowns */
-        .specialities-mobile-dropdown i {
-            transition: transform 0.3s ease;
-        }
-
-        /* Custom logo style */
+        /* Logo size adjustments */
         .akshaya-logo {
             display: flex;
             align-items: center;
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
         }
 
         .akshaya-logo img {
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
             object-fit: contain;
             margin-right: 0;
         }
 
-        /* Add this to your existing <style> block */
-
-        /* ------------------------------------- */
-        /* --- SLIDESHOW ANIMATION --- */
-        /* ------------------------------------- */
-
-        @keyframes slide {
-
-            /* Image 1: Display for 30% of the time, transition in/out for 3.33% */
-            0% {
-                background-position: 0 0;
-            }
-
-            30% {
-                background-position: 0 0;
-            }
-
-            33.33% {
-                background-position: -100vw 0;
-            }
-
-            /* Slide to Image 2 */
-
-            /* Image 2: Display for 30% of the time, transition in/out for 3.33% */
-            63.33% {
-                background-position: -100vw 0;
-            }
-
-            66.66% {
-                background-position: -200vw 0;
-            }
-
-            /* Slide to Image 3 */
-
-            /* Image 3: Display for 30% of the time, transition out for 3.33% */
-            96.66% {
-                background-position: -200vw 0;
-            }
-
-            100% {
-                background-position: 0 0;
-            }
-
-            /* Loop back to Image 1 */
+        /* ==================================== */
+        /* FLOATING CTA STYLES */
+        /* ==================================== */
+        #whatsapp-cta {
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
         }
 
-        .slideshow-background {
-            /* Key properties for horizontal slide show */
-            width: 300%;
-            /* Total width for 3 images */
-            height: 100%;
+        #whatsapp-cta:hover {
+            transform: scale(1.1);
+        }
+        
+        /* ==================================== */
+        /* MODAL FIX: Constraining pop-up width */
+        /* ==================================== */
+        #contactModal > div {
+            max-width: 28rem; 
+            width: 90%; 
+            max-height: none; 
+            overflow-y: auto; 
+            transform: scale(1);
+            transition: transform 0.3s ease-out;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Custom class for active nav link highlighting (Desktop) */
+        .nav-link.active {
+            font-weight: bold;
+            color: #374151; /* Dark gray/Black for contrast on lime background */
+        }
 
-            /* Place your images here as a comma-separated list */
-            background-image:
-                url('path/to/surgical-bg-1.jpg'),
-                url('path/to/surgical-bg-2.jpg'),
-                url('path/to/surgical-bg-3.jpg');
-
-            /* Adjust image size and tiling for slideshow effect */
-            background-size: 100vw 100%, 100vw 100%, 100vw 100%;
-            /* Each image is 100vw wide */
-            background-repeat: no-repeat;
-            background-position: 0 0, 100vw 0, 200vw 0;
-            /* Position images side-by-side */
-
-            /* Apply the animation */
-            animation: slide 15s infinite ease-in-out;
-            /* 15s total duration for one loop */
+        /* Custom class for active mobile link highlighting (Mobile) */
+        .mobile-link.active {
+            font-weight: bold;
+            color: #f43f8c; /* logo-primary pink on white background */
+            background-color: #f3f4f6;
+        }
+        
+        /* Doctor Page Specific Styles */
+        .qualification-item {
+            display: flex;
+            align-items: center;
+            background-color: #fdf2f8; /* Light pink background */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #f43f8c; /* Primary color border */
+        }
+        .treatment-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .treatment-card:hover {
+            border-bottom-color: #84cc16; /* Secondary color hover */
         }
     </style>
 </head>
 
 <body class="bg-gray-50 font-sans relative">
-    <!-- Button to open popup -->
-<a href="#" class="open-appointment-modal hidden md:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
-  <button class="bg-logo-primary text-white font-semibold tracking-wider vertical-cta shadow-xl hover:bg-logo-dark transition duration-300">
-    Make An Appointment
-  </button>
-</a>
 
-    <a href="#chat-widget" class="fixed right-6 bottom-6 z-50">
+    <a href="#appointment" id="open-appointment-modal"
+        class="hidden md:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50 open-modal-btn">
         <button
-            class="bg-logo-secondary text-logo-dark font-semibold py-3 px-6 rounded-lg shadow-xl hover:bg-lime-600 transition duration-300">
-            Chat With Us
+            class="bg-logo-primary text-white font-semibold tracking-wider vertical-cta shadow-xl hover:bg-logo-dark transition duration-300">
+            Make An Appointment
         </button>
     </a>
+
+    <a href="https://wa.me/911234567890" target="_blank"
+        class="fixed right-6 bottom-6 z-50 p-3 bg-chat-whatsapp rounded-full shadow-xl" id="whatsapp-cta"
+        aria-label="Chat with us on WhatsApp">
+        <i data-feather="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
+
 
     <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
 
@@ -184,14 +174,14 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-6">
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="phone" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Emergency</p>
                         <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 1234567890</a>
                     </div>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="mail" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Email</p>
@@ -199,10 +189,10 @@
                             class="font-bold text-logo-primary">akshayahospitals03@gmail.com</a>
                     </div>
                 </div>
-           <a href="#" class="open-appointment-modal bg-logo-primary hover:bg-logo-dark text-white px-4 py-2 rounded-md transition duration-300">
-  Make Appointment
-</a>
-
+                <a href="#" id="open-appointment-modal-header"
+                    class="bg-logo-primary hover:bg-logo-dark text-white px-4 py-2 rounded-md transition duration-300 open-modal-btn">
+                    Make Appointment
+                </a>
             </div>
 
             <button id="mobile-menu-button" class="md:hidden text-gray-700">
@@ -211,57 +201,54 @@
         </div>
 
         <div class="hidden md:block bg-lime-500 shadow-md">
-            <div class="container mx-auto px-4 py-4">
-
+            <div class="container mx-auto px-4 py-3">
                 <div class="w-full flex justify-between items-center">
-
-                    <nav class="flex items-center space-x-6 text-white text-base font-medium">
-                        <a href="index.html" class="hover:text-gray-900 transition duration-300">Home</a>
-                        <a href="about.html" class="hover:text-gray-900 transition duration-300">About Us</a>
+                    <nav class="flex items-center space-x-6 text-white text-base font-medium" id="desktop-nav">
+                        <a href="index.html" class="nav-link hover:text-gray-900 transition duration-300">Home</a>
+                        <a href="about.html" class="nav-link hover:text-gray-900 transition duration-300">About Us</a>
 
                         <div class="dropdown relative group">
-                            <a href="specialities.html" class="hover:text-gray-900 flex items-center">
+                            <a href="specialities.html" class="nav-link hover:text-gray-900 flex items-center">
                                 Specialities <span class="ml-1 text-xs font-bold">+</span>
                             </a>
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
                                 <a href="general-medicine.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">General Medicine</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">General Medicine</a>
                                 <a href="gastroenterology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Gastroenterology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Gastroenterology</a>
                                 <a href="laparoscopic-surgery.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Laparoscopic Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Laparoscopic Surgery</a>
                                 <a href="surgery.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Surgery</a>
                                 <a href="Obstetrics-Gynaecology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Obstetrics/Gynaecology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Obstetrics/Gynaecology</a>
                                 <a href="accident-emergency.html"
                                     class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Accident & Emergency</a>
                                 <a href="orthopedics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Orthopedics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Orthopedics</a>
                                 <a href="Paediatrics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Paediatrics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Paediatrics</a>
                                 <a href="ICU-Critical-Care.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">ICU & Critical Care</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">ICU & Critical Care</a>
                                 <a href="Neonatology-NICU.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neonatology and NICU</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neonatology and NICU</a>
                                 <a href="Rehabilitation.html"
                                     class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Rehabilitation</a>
                                 <a href="Neurology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neurology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neurology</a>
                             </div>
                         </div>
 
-                        <a href="doctors.html" class="hover:text-gray-900">Doctors</a>
-                        <a href="blog.html" class="hover:text-gray-900">Blog</a>
+                        <a href="doctors.html" class="nav-link hover:text-gray-900">Doctors</a>
+                        <a href="blog.html" class="nav-link hover:text-gray-900">Blog</a>
 
                         <div class="dropdown relative group">
-                            <a href="facilities.html" class="hover:text-gray-900 flex items-center">
+                            <a href="facilities.html" class="nav-link hover:text-gray-900 flex items-center">
                                 Facilities <span class="ml-1 text-xs font-bold">+</span>
                             </a>
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
-
                                 <a href="facilities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
                                     Facilities</a>
                                 <a href="telemedicine&video-cosultation.html"
@@ -290,7 +277,7 @@
                             </div>
                         </div>
 
-                        <a href="contact.html" class="hover:text-gray-900">Contact Us</a>
+                        <a href="contact.html" class="nav-link hover:text-gray-900">Contact Us</a>
                     </nav>
 
                     <div class="flex items-center space-x-3 text-white">
@@ -306,11 +293,10 @@
                 </div>
             </div>
         </div>
-
         <div id="mobile-menu" class="mobile-menu md:hidden">
             <div class="px-4 py-4 space-y-2 bg-white border-t border-gray-200">
-                <a href="index.html" class="block py-2 text-lg hover:bg-gray-100">Home</a>
-                <a href="about.html" class="block py-2 text-lg hover:bg-gray-100">About Us</a>
+                <a href="index.html" class="mobile-link block py-2 text-lg hover:bg-gray-100">Home</a>
+                <a href="about.html" class="mobile-link block py-2 text-lg hover:bg-gray-100">About Us</a>
 
                 <div class="specialities-mobile-dropdown">
                     <a id="specialities-toggle" href="#"
@@ -320,35 +306,35 @@
                     </a>
                     <div id="specialities-list"
                         class="pl-4 pt-1 pb-1 space-y-1 hidden text-base border-l border-gray-200 ml-4">
-                        <a href="specialities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
+                        <a href="specialities.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">View All
                             Specialities</a>
-                        <a href="general-medicine.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">General
+                        <a href="general-medicine.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">General
                             Medicine</a>
                         <a href="gastroenterology.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Gastroenterology</a>
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Gastroenterology</a>
                         <a href="laparoscopic-surgery.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Laparoscopic Surgery</a>
-                        <a href="surgery.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Surgery</a>
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Laparoscopic Surgery</a>
+                        <a href="surgery.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Surgery</a>
                         <a href="Obstetrics-Gynaecology.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Obstetrics/Gynaecology</a>
-                        <a href="accident-emergency.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Accident
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Obstetrics/Gynaecology</a>
+                        <a href="accident-emergency.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Accident
                             & Emergency</a>
-                        <a href="orthopedics.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Orthopedics</a>
-                        <a href="Paediatrics.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Paediatrics</a>
-                        <a href="ICU-Critical-Care.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">ICU &
+                        <a href="orthopedics.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Orthopedics</a>
+                        <a href="Paediatrics.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Paediatrics</a>
+                        <a href="ICU-Critical-Care.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">ICU &
                             Critical Care</a>
-                        <a href="Neonatology-NICU.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Neonatology
+                        <a href="Neonatology-NICU.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Neonatology
                             and NICU</a>
                         <a href="Rehabilitation.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Rehabilitation</a>
-                        <a href="Neurology.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Neurology</a>
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Rehabilitation</a>
+                        <a href="Neurology.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Neurology</a>
                     </div>
                 </div>
 
-                <a href="doctors.html" class="block py-2 text-lg hover:bg-gray-100">Doctors</a>
-                <a href="gallery.html" class="block py-2 text-lg hover:bg-gray-100">Gallery</a>
-                <a href="blog.html" class="block py-2 text-lg hover:bg-gray-100">Blog</a>
-                <a href="packages.html" class="block py-2 text-lg hover:bg-gray-100">Health Packages</a>
+                <a href="doctors.html" class="mobile-link block py-2 text-lg hover:bg-gray-100">Doctors</a>
+                <a href="gallery.html" class="mobile-link block py-2 text-lg hover:bg-gray-100">Gallery</a>
+                <a href="blog.html" class="mobile-link block py-2 text-lg hover:bg-gray-100">Blog</a>
+                <a href="packages.html" class="mobile-link block py-2 text-lg hover:bg-gray-100">Health Packages</a>
 
                 <div class="specialities-mobile-dropdown">
                     <a id="facilities-toggle" href="#"
@@ -358,40 +344,40 @@
                     </a>
                     <div id="facilities-list"
                         class="pl-4 pt-1 pb-1 space-y-1 hidden text-base border-l border-gray-200 ml-4">
-                        <a href="facilities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
+                        <a href="facilities.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">View All
                             Facilities</a>
                         <a href="telemedicine&video-cosultation.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Telemedicine & Video-Consultation</a>
-                        <a href="24-7-ambulence.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Telemedicine & Video-Consultation</a>
+                        <a href="24-7-ambulence.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">24/7
                             Ambulance</a>
-                        <a href="dialysis.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Dialysis</a>
+                        <a href="dialysis.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Dialysis</a>
                         <a href="consultation&opd.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Consulttaion & OPD</a>
-                        <a href="wards.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Wards</a>
-                        <a href="24-7-diagnostics&labs.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Consulttaion & OPD</a>
+                        <a href="wards.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Wards</a>
+                        <a href="24-7-diagnostics&labs.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">24/7
                             Diagnostics & Labs</a>
-                        <a href="Insurencedesk.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Insurence
+                        <a href="Insurencedesk.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Insurence
                             Desk</a>
-                        <a href="24-7-pharmacy.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">24/7
+                        <a href="24-7-pharmacy.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">24/7
                             Pharmacy</a>
-                        <a href="quality.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">Quality</a>
+                        <a href="quality.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Quality</a>
                         <a href="Endoscopy-colonoscopy-ERCP.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">Endoscopy/Colonoscopy/ERCP</a>
-                        <a href="4d-ultra-sound-scan.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">4D Ultra
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">Endoscopy/Colonoscopy/ERCP</a>
+                        <a href="4d-ultra-sound-scan.html" class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">4D Ultra
                             Sound Scan</a>
                         <a href="bera-vep-videoeeg-nct.html"
-                            class="block px-3 py-1 rounded-md hover:bg-gray-200">BERA/VEP Video EEG/NCT</a>
+                            class="mobile-link block px-3 py-1 rounded-md hover:bg-gray-200">BERA/VEP Video EEG/NCT</a>
                     </div>
                 </div>
 
-                <a href="contact.html" class="block py-2 text-lg hover:bg-gray-100">Contact Us</a>
+                <a href="contact.html" class="mobile-link block py-2 text-lg hover:bg-gray-100">Contact Us</a>
 
                 <hr class="border-gray-200 my-4">
 
                 <div class="flex flex-col items-start pt-2 space-y-3">
                     <h4 class="text-sm font-semibold text-gray-500">Connect With Us</h4>
                     <div class="flex space-x-6 text-gray-700">
-                        <a href="https://www.facebook.com/people/Akshaya-Hospitals/61581702164951/"
+                        <a href="https://www.facebook.com/profile.php?id=61581702164951"
                             class="hover:text-logo-primary"><i data-feather="facebook" class="w-6 h-6"></i></a>
                         <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
@@ -405,91 +391,132 @@
         </div>
     </header>
 
-
-<!-- ===== Doctor Page Sections ===== -->
-
-<!-- About Doctor -->
-<section class="py-16 bg-gray-50">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <h2 class="text-4xl font-bold text-pink-700 mb-6">About the Doctor</h2>
-    <p class="text-gray-700 text-lg leading-relaxed">
-      Dr. [Doctor Name] is a highly qualified specialist with over [X] years of experience in [specialization]. 
-      Dedicated to providing compassionate and advanced care, focusing on patient comfort and well-being.
-    </p>
-  </div>
-</section>
-
-<!-- Qualification & Experience -->
-<section class="py-16 bg-white">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-semibold text-pink-700 mb-6 text-center">Qualifications & Experience</h2>
-    <ul class="grid md:grid-cols-2 gap-6 text-gray-700 text-lg">
-      <li>🎓 MBBS, MD – [University Name]</li>
-      <li>🏥 [X] Years of experience in [Hospital/Clinic Name]</li>
-      <li>💼 Specialized in [Field/Expertise]</li>
-      <li>📚 Member of [Medical Association Name]</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Treatments & Services -->
-<section class="py-16 bg-gray-50">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-semibold text-pink-700 mb-6">Treatments & Services</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="p-6 bg-white rounded-2xl shadow">
-        <h3 class="text-xl font-semibold mb-3 text-pink-600">General Consultation</h3>
-        <p class="text-gray-600">Comprehensive check-ups and health assessments.</p>
-      </div>
-      <div class="p-6 bg-white rounded-2xl shadow">
-        <h3 class="text-xl font-semibold mb-3 text-pink-600">Specialized Treatment</h3>
-        <p class="text-gray-600">Advanced care tailored to each patient’s needs.</p>
-      </div>
-      <div class="p-6 bg-white rounded-2xl shadow">
-        <h3 class="text-xl font-semibold mb-3 text-pink-600">Follow-up Care</h3>
-        <p class="text-gray-600">Regular monitoring and guidance for recovery.</p>
-      </div>
+<section class="relative bg-logo-dark text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Dr. Priya Sharma</h1>
+        <p class="text-xl max-w-2xl mx-auto">
+            Senior Consultant Cardiologist at Akshay Hospital
+        </p>
     </div>
-  </div>
 </section>
 
-<!-- Patient Testimonials -->
 <section class="py-16 bg-white">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-semibold text-pink-700 mb-6">Patient Testimonials</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <div class="bg-gray-100 p-6 rounded-2xl shadow">
-        <p class="italic text-gray-600">"Dr. [Name] is very kind and understanding. My treatment was smooth and effective!"</p>
-        <h4 class="mt-4 font-semibold text-gray-800">– [Patient Name]</h4>
-      </div>
-      <div class="bg-gray-100 p-6 rounded-2xl shadow">
-        <p class="italic text-gray-600">"Excellent service and care. I highly recommend this doctor to everyone."</p>
-        <h4 class="mt-4 font-semibold text-gray-800">– [Patient Name]</h4>
-      </div>
+    <div class="container mx-auto px-4 max-w-5xl">
+        
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-6 rounded-lg shadow-xl mb-12">
+            <div class="flex-shrink-0">
+                <img src="http://static.photos/people/400x400/doctor-profile" alt="Dr. Priya Sharma Profile"
+                    class="w-48 h-48 object-cover rounded-full border-4 border-logo-secondary shadow-md">
+            </div>
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-1">Dr. Priya Sharma</h1>
+                <p class="text-2xl font-semibold text-logo-primary mb-4">Senior Consultant Cardiologist</p>
+                <p class="text-gray-600 mb-4 max-w-2xl">
+                    Dr. Sharma is a leading expert in interventional cardiology with over 15 years of dedicated practice. 
+                    She specializes in complex coronary interventions, heart failure management, and preventive cardiac care. 
+                    Committed to providing compassionate, evidence-based treatment to every patient.
+                </p>
+                <div class="flex justify-center md:justify-start space-x-4 mt-6">
+                    <span class="bg-logo-secondary/20 text-logo-dark text-sm px-3 py-1 rounded-full font-medium">MBBS, MD (Cardio), FACC</span>
+                    <span class="bg-logo-secondary/20 text-logo-dark text-sm px-3 py-1 rounded-full font-medium">15+ Years Experience</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-gray-100 p-8 rounded-lg shadow-md mb-12">
+            <h2 class="text-3xl font-bold text-logo-primary mb-8 text-center">Qualifications & Professional Milestones</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <div class="qualification-item">
+                    <i data-feather="book-open" class="w-6 h-6 text-logo-primary mr-3 flex-shrink-0"></i>
+                    <div>
+                        <p class="font-semibold text-gray-800">Education & Training</p>
+                        <p class="text-sm text-gray-600">MBBS (AIIMS Delhi), MD (Internal Medicine), DM (Cardiology)</p>
+                    </div>
+                </div>
+                
+                <div class="qualification-item">
+                    <i data-feather="award" class="w-6 h-6 text-logo-primary mr-3 flex-shrink-0"></i>
+                    <div>
+                        <p class="font-semibold text-gray-800">Certifications</p>
+                        <p class="text-sm text-gray-600">Fellow of American College of Cardiology (FACC)</p>
+                    </div>
+                </div>
+                
+                <div class="qualification-item">
+                    <i data-feather="clock" class="w-6 h-6 text-logo-primary mr-3 flex-shrink-0"></i>
+                    <div>
+                        <p class="font-semibold text-gray-800">Experience</p>
+                        <p class="text-sm text-gray-600">10 years at Apollo Hospital, 5 years at Akshay Hospital</p>
+                    </div>
+                </div>
+                
+                <div class="qualification-item">
+                    <i data-feather="users" class="w-6 h-6 text-logo-primary mr-3 flex-shrink-0"></i>
+                    <div>
+                        <p class="font-semibold text-gray-800">Associations</p>
+                        <p class="text-sm text-gray-600">Member of the Cardiological Society of India (CSI)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-logo-dark mb-8 text-center">Areas of Expertise & Services</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="treatment-card p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                    <i data-feather="activity" class="w-8 h-8 text-logo-secondary mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Interventional Cardiology</h3>
+                    <p class="text-gray-600 text-sm">Angiography, Angioplasty, Stent Implantation, and complex PCI procedures.</p>
+                </div>
+                
+                <div class="treatment-card p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                    <i data-feather="heart" class="w-8 h-8 text-logo-secondary mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Heart Failure Management</h3>
+                    <p class="text-gray-600 text-sm">Advanced treatment plans, medication management, and device therapy consultation.</p>
+                </div>
+                
+                <div class="treatment-card p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                    <i data-feather="shield" class="w-8 h-8 text-logo-secondary mb-3"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Preventive Cardiac Care</h3>
+                    <p class="text-gray-600 text-sm">Risk assessment, cholesterol management, lifestyle coaching, and health screening.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center bg-logo-dark text-white p-6 rounded-lg shadow-2xl">
+            <h3 class="text-2xl font-bold mb-3">Need a Consultation with Dr. Sharma?</h3>
+            <p class="mb-4 opacity-90">Book your priority appointment today for expert advice.</p>
+            <a href="#" id="open-appointment-modal-bottom"
+                class="inline-block px-8 py-3 text-lg font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-105 bg-logo-secondary hover:bg-lime-600 text-white open-modal-btn">
+                Book Appointment Now
+            </a>
+        </div>
+
     </div>
-  </div>
 </section>
 
-<!-- Appointment Form -->
-<section class="py-16 bg-gray-50">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-3xl font-semibold text-pink-700 mb-6">Book an Appointment</h2>
-    
-    <!-- Inline Page Form -->
-    <form id="inlineAppointmentForm" class="grid md:grid-cols-2 gap-6 bg-white p-8 rounded-2xl shadow">
-      <input type="text" id="inlineName" placeholder="Full Name" class="p-3 border rounded-lg" required>
-      <input type="email" id="inlineEmail" placeholder="Email" class="p-3 border rounded-lg" required>
-      <input type="text" id="inlinePhone" placeholder="Phone Number" class="p-3 border rounded-lg" required>
-      <input type="date" id="inlineDate" class="p-3 border rounded-lg" required>
-      <textarea id="inlineMessage" placeholder="Describe your concern" class="md:col-span-2 p-3 border rounded-lg h-32" required></textarea>
-      <button type="submit" class="md:col-span-2 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-lg shadow">
-        Submit
-      </button>
-    </form>
-  </div>
-</section>
+<section class="py-16 bg-logo-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">24/7 Emergency Services</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Our emergency department is staffed round the clock with
+                expert
+                doctors and equipped with life-saving technology.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:+911234567890"
+                    class="bg-white text-logo-primary px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition duration-300 flex items-center">
+                    <i data-feather="phone" class="mr-2"></i> Call Emergency
+                </a>
+                <a href="contact.html"
+                    class="border-2 border-white px-6 py-3 rounded-md font-semibold hover:bg-logo-dark transition duration-300">
+                    Learn About Emergency Services
+                </a>
+            </div>
+        </div>
+    </section>
 
-            <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
@@ -570,7 +597,7 @@
 
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 Akshay Hospital. All Rights Reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Akshay Hospital. All Rights Reserved.</p>
                     <div class="flex space-x-6">
                         <a href="privacy.html" class="text-gray-400 hover:text-logo-primary">Privacy Policy</a>
                         <a href="terms.html" class="text-gray-400 hover:text-logo-primary">Terms of Service</a>
@@ -582,161 +609,173 @@
     </footer>
 
 
-    <!-- Popup Form -->
     <div id="contactModal"
         class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative mx-4 my-8">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 relative mx-4 my-6">
 
-            <!-- Close Button -->
             <button id="closeModal"
                 class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
 
-            <h2 class="text-2xl font-bold text-lime-600 mb-6 text-center">Contact Akshaya Hospital</h2>
+            <div class="text-center mb-5">
+                
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Book Your Visit</h2>
+                <p class="text-gray-600 font-medium text-sm">Let's find your preferred appointment time</p>
+            </div>
 
             <form id="contactForm" class="space-y-4">
                 <input type="hidden" name="formType" value="popupForm">
-
+                
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupName">Full Name</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
+                        <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Full Name
+                    </label>
                     <input type="text" id="popupName" name="name" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupEmail">Email Address</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
+                        <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Email Address
+                    </label>
                     <input type="email" id="popupEmail" name="email" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupPhone">Phone Number</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
+                        <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Phone Number
+                    </label>
                     <input type="tel" id="popupPhone" name="phone" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupMessage">Message</label>
-                    <textarea id="popupMessage" name="message" rows="4" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
+                        <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Message (Optional)
+                    </label>
+                    <textarea id="popupMessage" name="message" rows="3" 
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-lime-600 hover:bg-pink-600 text-white font-bold py-3 rounded-lg">Send
-                    Message</button>
+                    class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
+                    Send Request
+                </button>
             </form>
+            
+            <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
+                <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
+                Your information is secure with us
+            </p>
 
         </div>
     </div>
 
 
 <script>
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwjHDAS7AUpUyr7fvgbvlyp_DndgN6apFYsQt57Wt9TFmCdfbzmzv-2w9GxZg7gLDuI0w/exec";
+    // ---------- WEB APP URL ----------
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwjHDAS7AUpUyr7fvgbvlyp_DndgN6apFYsQt57Wt9TFmCdfbzmzv-2w9GxZg7gLDuI0w/exec";
 
-// ---------- Popup Modal ----------
-const modal = document.getElementById('contactModal');
-const closeModalBtn = document.getElementById('closeModal');
-const contactForm = document.getElementById('contactForm');
+    // ---------- POPUP FORM LOGIC (MODAL) ----------
+    const modal = document.getElementById('contactModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const contactForm = document.getElementById('contactForm');
 
-// Show/Hide functions
-function showModal() {
-  modal.classList.remove('opacity-0', 'invisible');
-  modal.classList.add('opacity-100', 'visible');
-}
-function hideModal() {
-  modal.classList.add('opacity-0', 'invisible');
-  modal.classList.remove('opacity-100', 'visible');
-}
+    // Buttons that open popup
+    const openModalSide = document.getElementById('open-appointment-modal'); // Fixed side CTA
+    const openModalHeader = document.getElementById('open-appointment-modal-header'); // Header button
 
-// Connect all buttons with class 'open-appointment-modal' to popup
-const openModalBtns = document.querySelectorAll('.open-appointment-modal');
-openModalBtns.forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    showModal();
-  });
-});
-
-// Close popup on close button or outside click
-closeModalBtn.addEventListener('click', hideModal);
-modal.addEventListener('click', e => { if(e.target === modal) hideModal(); });
-
-// Auto show popup every 20 seconds
-setInterval(showModal, 20000);
-
-// ---------- Generic Form Submission Function ----------
-async function submitForm(formType, elements) {
-  const formData = { formType };
-  for(const key in elements) formData[key] = elements[key].value;
-
-  const params = new URLSearchParams();
-  for(const key in formData) params.append(key, formData[key]);
-
-  try {
-    const res = await fetch(WEB_APP_URL, {
-      method: "POST",
-      body: params.toString(),
-      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
-    });
-    const data = await res.json();
-    if(data.result === "success") {
-      alert("✅ Message sent successfully!");
-      return true;
-    } else {
-      alert("⚠️ Error: " + (data.error || "Unknown error"));
-      return false;
+    // Show popup
+    function showModal() {
+        modal.classList.remove('opacity-0', 'invisible');
+        modal.classList.add('opacity-100', 'visible');
     }
-  } catch(err) {
-    console.error("Fetch error:", err);
-    alert("❌ Error sending message!");
-    return false;
-  }
-}
 
-// ---------- Popup Form Submission ----------
-if(contactForm) {
-  contactForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const success = await submitForm("popupForm", {
-      name: document.getElementById('popupName'),
-      email: document.getElementById('popupEmail'),
-      phone: document.getElementById('popupPhone'),
-      message: document.getElementById('popupMessage')
-    });
-    if(success) { contactForm.reset(); hideModal(); }
-  });
-}
+    // Hide popup
+    function hideModal() {
+        modal.classList.add('opacity-0', 'invisible');
+        modal.classList.remove('opacity-100', 'visible');
+    }
 
-// ---------- Inline Page Form Submission ----------
-const inlineForm = document.getElementById('inlineAppointmentForm');
-if(inlineForm) {
-  inlineForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    const success = await submitForm("inlineForm", {
-      name: document.getElementById('inlineName'),
-      email: document.getElementById('inlineEmail'),
-      phone: document.getElementById('inlinePhone'),
-      date: document.getElementById('inlineDate'),
-      message: document.getElementById('inlineMessage')
+    // Add click events to buttons
+    document.addEventListener('DOMContentLoaded', () => {
+        // FIXED SIDE CTA HANDLER (FIXED)
+        if(openModalSide) {
+            openModalSide.addEventListener('click', e => { 
+                e.preventDefault(); 
+                showModal(); 
+            });
+        }
+
+        // HEADER BUTTON HANDLER
+        if(openModalHeader) {
+            openModalHeader.addEventListener('click', e => { 
+                e.preventDefault(); 
+                showModal(); 
+            });
+        }
+        
+        // Close modal handlers
+        closeModalBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', e => { if(e.target === modal) hideModal(); });
+
+        // Auto show popup every 20 seconds
+        setInterval(showModal, 20000);
+        
+        // Initial feather icon replacement
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
     });
-    if(success) inlineForm.reset();
-  });
-}
+
+    // Handle form submission
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            name: document.getElementById('popupName').value,
+            email: document.getElementById('popupEmail').value,
+            phone: document.getElementById('popupPhone').value,
+            message: document.getElementById('popupMessage').value,
+            formType: "popupForm"
+        };
+
+        const params = new URLSearchParams();
+        for(const key in formData) params.append(key, formData[key]);
+
+        try {
+            const res = await fetch(WEB_APP_URL, {
+                method: "POST",
+                body: params.toString(),
+                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
+            });
+
+            const data = await res.json();
+
+            if(data.result === "success") {
+                alert("✅ Message sent successfully!");
+                contactForm.reset();
+                hideModal();
+            } else {
+                alert("⚠️ Error: " + (data.error || "Unknown error"));
+            }
+        } catch(err) {
+            console.error("Fetch error:", err);
+            alert("❌ Error sending message!");
+        }
+    });
 </script>
-
-
-
-
-
 
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const openModalButton = document.getElementById('open-appointment-modal');
-            const closeModalButton = document.getElementById('close-modal');
-            const appointmentModal = document.getElementById('appointment-modal');
-
+            
             // --- 1. Main Mobile Menu Toggle (Hamburger) ---
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function () {
@@ -774,36 +813,8 @@ if(inlineForm) {
             setupDropdownToggle('specialities-toggle', 'specialities-list');
             setupDropdownToggle('facilities-toggle', 'facilities-list');
 
-
-            // --- 3. Appointment Modal Logic ---
-            if (openModalButton && appointmentModal && closeModalButton) {
-                // Open modal when fixed CTA button is clicked
-                openModalButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    appointmentModal.classList.add('active');
-                });
-
-                // Close modal when X button is clicked
-                closeModalButton.addEventListener('click', function () {
-                    appointmentModal.classList.remove('active');
-                });
-
-                // Close modal if overlay is clicked
-                appointmentModal.addEventListener('click', function (e) {
-                    if (e.target === appointmentModal) {
-                        appointmentModal.classList.remove('active');
-                    }
-                });
-            }
-
-            // --- 4. Initial Feather Icons Rendering & Footer Year ---
-            if (typeof feather !== 'undefined') {
-                feather.replace();
-            }
-            const yearElement = document.getElementById('year');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
+            // NOTE: Initial feather icons rendering is now inside the modal logic block above
+            // to ensure it runs *after* all elements are in place.
         });
     </script>
 </body>

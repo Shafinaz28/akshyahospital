@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Hospital - World Class Healthcare</title>
+    <title>Akshay Hospital - World Class Healthcare | Specialities</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-
-    <script>
+  <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -16,16 +14,21 @@
                         'logo-primary': '#f43f8c', // pink
                         'logo-secondary': '#a3e635', // lime green
                         'logo-dark': '#831843', // dark pink
-                        'cta-blue': '#007bff', // Main blue for CTAs/Hover
-                        'chat-blue': '#00c0ff', // Bright blue/teal for the Chat CTA
+                        'cta-blue': '#007bff',
+                        'chat-whatsapp': '#25D366', // WhatsApp Green for floating CTA
+                        'emergency-red': '#E03137', // A slightly deeper, professional red for the banner
+                    },
+                    spacing: {
+                        '128': '32rem',
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Dropdown Transition (Desktop) */
+        /* ==================================== */
+        /* BASE & NAVIGATION STYLES */
+        /* ==================================== */
         .dropdown-menu {
             transition: all 0.3s ease;
             opacity: 0;
@@ -41,10 +44,9 @@
 
         .dropdown-menu a:hover {
             background-color: #f3f4f6;
-            color: #00ff4c;
+            color: #a3e635;
         }
 
-        /* Mobile Menu Animation */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -57,7 +59,6 @@
             transition: max-height 0.5s ease-in;
         }
 
-        /* Custom style for the vertical CTA button */
         .vertical-cta {
             transform: rotate(90deg) translate(50%, 0);
             transform-origin: 100% 0;
@@ -67,101 +68,59 @@
             line-height: 1;
         }
 
-        /* Icon rotation for mobile dropdowns */
-        .specialities-mobile-dropdown i {
-            transition: transform 0.3s ease;
-        }
-
-        /* Custom logo style */
+        /* Logo size adjustments */
         .akshaya-logo {
             display: flex;
             align-items: center;
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
         }
 
         .akshaya-logo img {
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
             object-fit: contain;
             margin-right: 0;
         }
 
-        /* Add this to your existing <style> block */
-
-        /* ------------------------------------- */
-        /* --- SLIDESHOW ANIMATION --- */
-        /* ------------------------------------- */
-
-        @keyframes slide {
-
-            /* Image 1: Display for 30% of the time, transition in/out for 3.33% */
-            0% {
-                background-position: 0 0;
-            }
-
-            30% {
-                background-position: 0 0;
-            }
-
-            33.33% {
-                background-position: -100vw 0;
-            }
-
-            /* Slide to Image 2 */
-
-            /* Image 2: Display for 30% of the time, transition in/out for 3.33% */
-            63.33% {
-                background-position: -100vw 0;
-            }
-
-            66.66% {
-                background-position: -200vw 0;
-            }
-
-            /* Slide to Image 3 */
-
-            /* Image 3: Display for 30% of the time, transition out for 3.33% */
-            96.66% {
-                background-position: -200vw 0;
-            }
-
-            100% {
-                background-position: 0 0;
-            }
-
-            /* Loop back to Image 1 */
+        /* ==================================== */
+        /* FLOATING CTA STYLES */
+        /* ==================================== */
+        #whatsapp-cta {
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
         }
 
-        .slideshow-background {
-            /* Key properties for horizontal slide show */
-            width: 300%;
-            /* Total width for 3 images */
-            height: 100%;
-
-            /* Place your images here as a comma-separated list */
-            background-image:
-                url('path/to/surgical-bg-1.jpg'),
-                url('path/to/surgical-bg-2.jpg'),
-                url('path/to/surgical-bg-3.jpg');
-
-            /* Adjust image size and tiling for slideshow effect */
-            background-size: 100vw 100%, 100vw 100%, 100vw 100%;
-            /* Each image is 100vw wide */
-            background-repeat: no-repeat;
-            background-position: 0 0, 100vw 0, 200vw 0;
-            /* Position images side-by-side */
-
-            /* Apply the animation */
-            animation: slide 15s infinite ease-in-out;
-            /* 15s total duration for one loop */
+        #whatsapp-cta:hover {
+            transform: scale(1.1);
         }
+        
+        /* ==================================== */
+        /* MODAL FIX: Constraining pop-up width */
+        /* ==================================== */
+        #contactModal > div {
+            max-width: 28rem; 
+            width: 90%; 
+            max-height: none; 
+            overflow-y: auto; 
+            transform: scale(1);
+            transition: transform 0.3s ease-out;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Removed unused hero styles for a cleaner document */
     </style>
 </head>
 
 <body class="bg-gray-50 font-sans relative">
-    <!-- Button to open popup -->
-    <a href="#" id="open-appointment-modal-right"
+
+    <a href="#appointment" id="open-appointment-modal"
         class="hidden md:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
         <button
             class="bg-logo-primary text-white font-semibold tracking-wider vertical-cta shadow-xl hover:bg-logo-dark transition duration-300">
@@ -169,12 +128,11 @@
         </button>
     </a>
 
-    <a href="https://wa.me/919876543210" target="_blank" class="fixed right-6 bottom-6 z-50">
-  <button
-    class="bg-logo-secondary text-logo-dark font-semibold py-3 px-6 rounded-lg shadow-xl hover:bg-lime-600 transition duration-300">
-    Chat With Us
-  </button>
-</a>
+    <a href="https://wa.me/911234567890" target="_blank"
+        class="fixed right-6 bottom-6 z-50 p-3 bg-chat-whatsapp rounded-full shadow-xl" id="whatsapp-cta"
+        aria-label="Chat with us on WhatsApp">
+        <i data-feather="message-circle" class="w-7 h-7 text-white"></i>
+    </a>
 
 
     <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
@@ -187,14 +145,14 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-6">
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="phone" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Emergency</p>
                         <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 1234567890</a>
                     </div>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="mail" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Email</p>
@@ -206,7 +164,6 @@
                     class="bg-logo-primary hover:bg-logo-dark text-white px-4 py-2 rounded-md transition duration-300">
                     Make Appointment
                 </a>
-
             </div>
 
             <button id="mobile-menu-button" class="md:hidden text-gray-700">
@@ -215,16 +172,14 @@
         </div>
 
         <div class="hidden md:block bg-lime-500 shadow-md">
-            <div class="container mx-auto px-4 py-4">
-
+            <div class="container mx-auto px-4 py-3">
                 <div class="w-full flex justify-between items-center">
-
                     <nav class="flex items-center space-x-6 text-white text-base font-medium">
                         <a href="index.html" class="hover:text-gray-900 transition duration-300">Home</a>
                         <a href="about.html" class="hover:text-gray-900 transition duration-300">About Us</a>
 
                         <div class="dropdown relative group">
-                            <a href="specialities.html" class="hover:text-gray-900 flex items-center">
+                            <a href="specialities.html" class="font-bold text-gray-900 flex items-center">
                                 Specialities <span class="ml-1 text-xs font-bold">+</span>
                             </a>
                             <div
@@ -265,7 +220,6 @@
                             </a>
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
-
                                 <a href="facilities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
                                     Facilities</a>
                                 <a href="telemedicine&video-cosultation.html"
@@ -310,7 +264,6 @@
                 </div>
             </div>
         </div>
-
         <div id="mobile-menu" class="mobile-menu md:hidden">
             <div class="px-4 py-4 space-y-2 bg-white border-t border-gray-200">
                 <a href="index.html" class="block py-2 text-lg hover:bg-gray-100">Home</a>
@@ -318,7 +271,7 @@
 
                 <div class="specialities-mobile-dropdown">
                     <a id="specialities-toggle" href="#"
-                        class="relative py-2 text-lg cursor-pointer flex justify-between items-center pr-8">
+                        class="relative py-2 text-lg cursor-pointer flex justify-between items-center pr-8 font-bold">
                         Specialities <i data-feather="chevron-down"
                             class="w-4 h-4 text-logo-primary absolute right-0 top-1/2 transform -translate-y-1/2"></i>
                     </a>
@@ -395,7 +348,7 @@
                 <div class="flex flex-col items-start pt-2 space-y-3">
                     <h4 class="text-sm font-semibold text-gray-500">Connect With Us</h4>
                     <div class="flex space-x-6 text-gray-700">
-                        <a href="https://www.facebook.com/people/Akshaya-Hospitals/61581702164951/"
+                        <a href="https://www.facebook.com/profile.php?id=61581702164951"
                             class="hover:text-logo-primary"><i data-feather="facebook" class="w-6 h-6"></i></a>
                         <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
@@ -408,36 +361,6 @@
             </div>
         </div>
     </header>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleButton = document.getElementById('specialities-toggle');
-        const specialityList = document.getElementById('specialities-list');
-        
-        // Ensure Feather Icons are rendered
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-
-        // Add the click event listener
-        if (toggleButton && specialityList) {
-            toggleButton.addEventListener('click', function(e) {
-                // IMPORTANT: This prevents navigation so the dropdown works.
-                e.preventDefault(); 
-                
-                // Toggle the 'hidden' Tailwind class
-                specialityList.classList.toggle('hidden');
-
-                // Optional: Rotate the chevron icon
-                const chevronIcon = toggleButton.querySelector('i');
-                if (chevronIcon) {
-                    chevronIcon.style.transform = specialityList.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)'; 
-                }
-            });
-        }
-    });
-</script>
-
 
 
 <!-- ===== Obstetrics & Gynaecology Page Section ===== -->
@@ -523,9 +446,7 @@
   </div>
 </section>
 
-
-
-     <footer class="bg-gray-900 text-white pt-16 pb-8">
+ <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
@@ -606,7 +527,7 @@
 
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 Akshay Hospital. All Rights Reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Akshay Hospital. All Rights Reserved.</p>
                     <div class="flex space-x-6">
                         <a href="privacy.html" class="text-gray-400 hover:text-logo-primary">Privacy Policy</a>
                         <a href="terms.html" class="text-gray-400 hover:text-logo-primary">Terms of Service</a>
@@ -618,48 +539,68 @@
     </footer>
 
 
-    <!-- Popup Form -->
     <div id="contactModal"
         class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative mx-4 my-8">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 relative mx-4 my-6">
 
-            <!-- Close Button -->
             <button id="closeModal"
                 class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
 
-            <h2 class="text-2xl font-bold text-lime-600 mb-6 text-center">Contact Akshaya Hospital</h2>
+            <div class="text-center mb-5">
+                
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Book Your Visit</h2>
+                <p class="text-gray-600 font-medium text-sm">Let's find your preferred appointment time</p>
+            </div>
 
             <form id="contactForm" class="space-y-4">
                 <input type="hidden" name="formType" value="popupForm">
-
+                
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupName">Full Name</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
+                        <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Full Name
+                    </label>
                     <input type="text" id="popupName" name="name" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupEmail">Email Address</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
+                        <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Email Address
+                    </label>
                     <input type="email" id="popupEmail" name="email" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupPhone">Phone Number</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
+                        <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Phone Number
+                    </label>
                     <input type="tel" id="popupPhone" name="phone" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupMessage">Message</label>
-                    <textarea id="popupMessage" name="message" rows="4" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
+                        <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Message (Optional)
+                    </label>
+                    <textarea id="popupMessage" name="message" rows="3" 
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-lime-600 hover:bg-pink-600 text-white font-bold py-3 rounded-lg">Send
-                    Message</button>
+                    class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
+                    Send Request
+                </button>
             </form>
+            
+            <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
+                <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
+                Your information is secure with us
+            </p>
 
         </div>
     </div>
@@ -669,13 +610,13 @@
     // ---------- WEB APP URL ----------
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwjHDAS7AUpUyr7fvgbvlyp_DndgN6apFYsQt57Wt9TFmCdfbzmzv-2w9GxZg7gLDuI0w/exec";
 
-    // ---------- POPUP FORM ----------
+    // ---------- POPUP FORM LOGIC (MODAL) ----------
     const modal = document.getElementById('contactModal');
     const closeModalBtn = document.getElementById('closeModal');
     const contactForm = document.getElementById('contactForm');
 
     // Buttons that open popup
-    const openModalRight = document.getElementById('open-appointment-modal-right'); // Right-middle button
+    const openModalSide = document.getElementById('open-appointment-modal'); // Fixed side CTA
     const openModalHeader = document.getElementById('open-appointment-modal-header'); // Header button
 
     // Show popup
@@ -691,15 +632,35 @@
     }
 
     // Add click events to buttons
-    if(openModalRight) openModalRight.addEventListener('click', e => { e.preventDefault(); showModal(); });
-    if(openModalHeader) openModalHeader.addEventListener('click', e => { e.preventDefault(); showModal(); });
+    document.addEventListener('DOMContentLoaded', () => {
+        // FIXED SIDE CTA HANDLER (FIXED)
+        if(openModalSide) {
+            openModalSide.addEventListener('click', e => { 
+                e.preventDefault(); 
+                showModal(); 
+            });
+        }
 
-    // Close modal
-    closeModalBtn.addEventListener('click', hideModal);
-    modal.addEventListener('click', e => { if(e.target === modal) hideModal(); });
+        // HEADER BUTTON HANDLER
+        if(openModalHeader) {
+            openModalHeader.addEventListener('click', e => { 
+                e.preventDefault(); 
+                showModal(); 
+            });
+        }
+        
+        // Close modal handlers
+        closeModalBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', e => { if(e.target === modal) hideModal(); });
 
-    // Auto show popup every 20 seconds
-    setInterval(showModal, 20000);
+        // Auto show popup every 20 seconds
+        setInterval(showModal, 20000);
+        
+        // Initial feather icon replacement
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    });
 
     // Handle form submission
     contactForm.addEventListener('submit', async (e) => {
@@ -740,16 +701,11 @@
 </script>
 
 
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            const openModalButton = document.getElementById('open-appointment-modal');
-            const closeModalButton = document.getElementById('close-modal');
-            const appointmentModal = document.getElementById('appointment-modal');
-
+            
             // --- 1. Main Mobile Menu Toggle (Hamburger) ---
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function () {
@@ -787,36 +743,8 @@
             setupDropdownToggle('specialities-toggle', 'specialities-list');
             setupDropdownToggle('facilities-toggle', 'facilities-list');
 
-
-            // --- 3. Appointment Modal Logic ---
-            if (openModalButton && appointmentModal && closeModalButton) {
-                // Open modal when fixed CTA button is clicked
-                openModalButton.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    appointmentModal.classList.add('active');
-                });
-
-                // Close modal when X button is clicked
-                closeModalButton.addEventListener('click', function () {
-                    appointmentModal.classList.remove('active');
-                });
-
-                // Close modal if overlay is clicked
-                appointmentModal.addEventListener('click', function (e) {
-                    if (e.target === appointmentModal) {
-                        appointmentModal.classList.remove('active');
-                    }
-                });
-            }
-
-            // --- 4. Initial Feather Icons Rendering & Footer Year ---
-            if (typeof feather !== 'undefined') {
-                feather.replace();
-            }
-            const yearElement = document.getElementById('year');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
+            // NOTE: Initial feather icons rendering is now inside the modal logic block above
+            // to ensure it runs *after* all elements are in place.
         });
     </script>
 </body>

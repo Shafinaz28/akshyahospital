@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Hospital - World Class Healthcare</title>
+    <title>Akshay Hospital - About Us</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-
-    <script>
+  <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'logo-primary': '#f43f8c', // pink
-                        'logo-secondary': '#a3e635', // lime green
-                        'logo-dark': '#831843', // dark pink
-                        'cta-blue': '#007bff', // Main blue for CTAs/Hover
-                        'chat-blue': '#00c0ff', // Bright blue/teal for the Chat CTA
+                        'logo-primary': '#f43f8c', // Pink (Original)
+                        'logo-secondary': '#a3e635', // Lime Green (Original)
+                        'logo-dark': '#831843', // Dark Pink (Original)
+                        'cta-blue': '#007bff',
+                        'chat-whatsapp': '#25D366', // WhatsApp Green
+                        'emergency-red': '#E03137', // Professional Red
+                    },
+                    spacing: {
+                        '128': '32rem',
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Dropdown Transition (Desktop) */
+        /* ==================================== */
+        /* BASE & NAVIGATION STYLES */
+        /* ==================================== */
         .dropdown-menu {
             transition: all 0.3s ease;
             opacity: 0;
@@ -41,10 +44,9 @@
 
         .dropdown-menu a:hover {
             background-color: #f3f4f6;
-            color: #1a1a1a;
+            color: #a3e635; /* logo-secondary */
         }
 
-        /* Mobile Menu Animation */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -57,7 +59,6 @@
             transition: max-height 0.5s ease-in;
         }
 
-        /* Custom style for the vertical CTA button */
         .vertical-cta {
             transform: rotate(90deg) translate(50%, 0);
             transform-origin: 100% 0;
@@ -67,111 +68,94 @@
             line-height: 1;
         }
 
-        /* Icon rotation for mobile dropdowns */
-        .specialities-mobile-dropdown i {
-            transition: transform 0.3s ease;
-        }
-
-        /* Custom logo style */
+        /* Logo size adjustments */
         .akshaya-logo {
             display: flex;
             align-items: center;
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
         }
 
         .akshaya-logo img {
-            height: 90px;
+            height: 90px; /* Increased height */
             width: auto;
             object-fit: contain;
             margin-right: 0;
         }
 
-        /* ------------------------------------- */
-        /* --- SLIDESHOW ANIMATION (Placeholder) --- */
-        /* ------------------------------------- */
-
-        @keyframes slide {
-
-            /* Image 1: Display for 30% of the time, transition in/out for 3.33% */
-            0% {
-                background-position: 0 0;
-            }
-
-            30% {
-                background-position: 0 0;
-            }
-
-            33.33% {
-                background-position: -100vw 0;
-            }
-
-            /* Slide to Image 2 */
-
-            /* Image 2: Display for 30% of the time, transition in/out for 3.33% */
-            63.33% {
-                background-position: -100vw 0;
-            }
-
-            66.66% {
-                background-position: -200vw 0;
-            }
-
-            /* Slide to Image 3 */
-
-            /* Image 3: Display for 30% of the time, transition out for 3.33% */
-            96.66% {
-                background-position: -200vw 0;
-            }
-
-            100% {
-                background-position: 0 0;
-            }
-
-            /* Loop back to Image 1 */
+        /* ==================================== */
+        /* FLOATING CTA STYLES */
+        /* ==================================== */
+        #whatsapp-cta {
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
         }
 
-        .slideshow-background {
-            /* Key properties for horizontal slide show */
-            width: 300%;
-            /* Total width for 3 images */
-            height: 100%;
+        #whatsapp-cta:hover {
+            transform: scale(1.1);
+        }
+        
+        /* ==================================== */
+        /* MODAL FIX: Constraining pop-up width */
+        /* ==================================== */
+        #contactModal > div {
+            max-width: 28rem; 
+            width: 90%; 
+            max-height: none; 
+            overflow-y: auto; 
+            transform: scale(1);
+            transition: transform 0.3s ease-out;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Custom class for active nav link highlighting (Desktop) */
+        .nav-link.active {
+            font-weight: bold;
+            color: #374151; /* Dark gray/Black for contrast on lime background */
+        }
 
-            /* Place your images here as a comma-separated list */
-            background-image:
-                url('path/to/surgical-bg-1.jpg'),
-                url('path/to/surgical-bg-2.jpg'),
-                url('path/to/surgical-bg-3.jpg');
+        /* Custom class for active mobile link highlighting (Mobile) */
+        .mobile-link.active {
+            font-weight: bold;
+            color: #f43f8c; /* logo-primary pink on white background */
+            background-color: #f3f4f6;
+        }
 
-            /* Adjust image size and tiling for slideshow effect */
-            background-size: 100vw 100%, 100vw 100%, 100vw 100%;
-            /* Each image is 100vw wide */
-            background-repeat: no-repeat;
-            background-position: 0 0, 100vw 0, 200vw 0;
-            /* Position images side-by-side */
-
-            /* Apply the animation */
-            animation: slide 15s infinite ease-in-out;
-            /* 15s total duration for one loop */
+        /* ABOUT PAGE STYLING */
+        .qualification-item {
+            display: flex;
+            align-items: center;
+            background-color: #fdf2f8; /* Light pink background */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #f43f8c; /* Primary color border */
         }
     </style>
 </head>
 
 <body class="bg-gray-50 font-sans relative">
-    <a href="#" id="open-appointment-modal-right"
-        class="hidden md:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
+
+    <a href="#appointment" id="open-appointment-modal"
+        class="hidden md:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50 open-modal-btn">
         <button
             class="bg-logo-primary text-white font-semibold tracking-wider vertical-cta shadow-xl hover:bg-logo-dark transition duration-300">
             Make An Appointment
         </button>
     </a>
 
-    <a href="#chat-widget" class="fixed right-6 bottom-6 z-50">
-        <button
-            class="bg-logo-secondary text-logo-dark font-semibold py-3 px-6 rounded-lg shadow-xl hover:bg-lime-600 transition duration-300">
-            Chat With Us
-        </button>
+    <a href="https://wa.me/911234567890" target="_blank"
+        class="fixed right-6 bottom-6 z-50 p-3 bg-chat-whatsapp rounded-full shadow-xl" id="whatsapp-cta"
+        aria-label="Chat with us on WhatsApp">
+        <i data-feather="message-circle" class="w-7 h-7 text-white"></i>
     </a>
+
 
     <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
 
@@ -183,14 +167,14 @@
             </div>
 
             <div class="hidden md:flex items-center space-x-6">
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="phone" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Emergency</p>
                         <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 1234567890</a>
                     </div>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 pt-1">
                     <i data-feather="mail" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Email</p>
@@ -199,10 +183,9 @@
                     </div>
                 </div>
                 <a href="#" id="open-appointment-modal-header"
-                    class="bg-logo-primary hover:bg-logo-dark text-white px-4 py-2 rounded-md transition duration-300">
+                    class="bg-logo-primary hover:bg-logo-dark text-white px-4 py-2 rounded-md transition duration-300 open-modal-btn">
                     Make Appointment
                 </a>
-
             </div>
 
             <button id="mobile-menu-button" class="md:hidden text-gray-700">
@@ -211,55 +194,54 @@
         </div>
 
         <div class="hidden md:block bg-lime-500 shadow-md">
-            <div class="container mx-auto px-4 py-4">
-
+            <div class="container mx-auto px-4 py-3">
                 <div class="w-full flex justify-between items-center">
-
-                    <nav class="flex items-center space-x-6 text-white text-base font-medium">
-                        <a href="index.html" class="hover:text-gray-900 transition duration-300">Home</a>
-                        <a href="about.html" class="hover:text-gray-900 transition duration-300">About Us</a>
+                    <nav class="flex items-center space-x-6 text-white text-base font-medium" id="desktop-nav">
+                        <a href="index.html" class="nav-link hover:text-gray-900 transition duration-300">Home</a>
+                        <a href="about.html" class="nav-link hover:text-gray-900 transition duration-300">About Us</a>
 
                         <div class="dropdown relative group">
-                            <a href="specialities.html" class="hover:text-gray-900 flex items-center">
+                            <a href="specialities.html" class="nav-link hover:text-gray-900 flex items-center">
                                 Specialities <span class="ml-1 text-xs font-bold">+</span>
                             </a>
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
                                 <a href="general-medicine.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">General Medicine</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">General Medicine</a>
                                 <a href="gastroenterology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Gastroenterology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Gastroenterology</a>
                                 <a href="laparoscopic-surgery.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Laparoscopic Surgery</a>
-                                <a href="surgery.html" class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Laparoscopic Surgery</a>
+                                <a href="surgery.html"
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Surgery</a>
                                 <a href="Obstetrics-Gynaecology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Obstetrics/Gynaecology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Obstetrics/Gynaecology</a>
                                 <a href="accident-emergency.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Accident & Emergency</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Accident & Emergency</a>
                                 <a href="orthopedics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Orthopedics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Orthopedics</a>
                                 <a href="Paediatrics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Paediatrics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Paediatrics</a>
                                 <a href="ICU-Critical-Care.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">ICU & Critical Care</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">ICU & Critical Care</a>
                                 <a href="Neonatology-NICU.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neonatology and NICU</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neonatology and NICU</a>
                                 <a href="Rehabilitation.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Rehabilitation</a>
-                                <a href="Neurology.html" class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neurology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Rehabilitation</a>
+                                <a href="Neurology.html"
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neurology</a>
                             </div>
                         </div>
 
-                        <a href="doctors.html" class="hover:text-gray-900">Doctors</a>
-                        <a href="blog.html" class="hover:text-gray-900">Blog</a>
+                        <a href="doctors.html" class="nav-link hover:text-gray-900">Doctors</a>
+                        <a href="blog.html" class="nav-link hover:text-gray-900">Blog</a>
 
                         <div class="dropdown relative group">
-                            <a href="facilities.html" class="hover:text-gray-900 flex items-center">
+                            <a href="facilities.html" class="nav-link hover:text-gray-900 flex items-center">
                                 Facilities <span class="ml-1 text-xs font-bold">+</span>
                             </a>
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
-
                                 <a href="facilities.html" class="block px-3 py-1 rounded-md hover:bg-gray-200">View All
                                     Facilities</a>
                                 <a href="telemedicine&video-cosultation.html"
@@ -288,7 +270,7 @@
                             </div>
                         </div>
 
-                        <a href="contact.html" class="hover:text-gray-900">Contact Us</a>
+                        <a href="contact.html" class="nav-link hover:text-gray-900">Contact Us</a>
                     </nav>
 
                     <div class="flex items-center space-x-3 text-white">
@@ -304,7 +286,6 @@
                 </div>
             </div>
         </div>
-
         <div id="mobile-menu" class="mobile-menu md:hidden">
             <div class="px-4 py-4 space-y-2 bg-white border-t border-gray-200">
                 <a href="index.html" class="block py-2 text-lg hover:bg-gray-100">Home</a>
@@ -389,7 +370,7 @@
                 <div class="flex flex-col items-start pt-2 space-y-3">
                     <h4 class="text-sm font-semibold text-gray-500">Connect With Us</h4>
                     <div class="flex space-x-6 text-gray-700">
-                        <a href="https://www.facebook.com/people/Akshaya-Hospitals/61581702164951/"
+                        <a href="https://www.facebook.com/profile.php?id=61581702164951"
                             class="hover:text-logo-primary"><i data-feather="facebook" class="w-6 h-6"></i></a>
                         <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
@@ -424,47 +405,49 @@
                         <div>
                             <label class="block text-gray-700 mb-2">Full Name</label>
                             <input type="text" name="name" required
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-lime-400 outline-none">
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-logo-secondary outline-none">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Email Address</label>
                             <input type="email" name="email" required
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-lime-400 outline-none">
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-logo-secondary outline-none">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Phone Number</label>
                             <input type="tel" name="phone" required
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-lime-400 outline-none">
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-logo-secondary outline-none">
                         </div>
                         <div>
                             <label class="block text-gray-700 mb-2">Your Message</label>
                             <textarea name="message" rows="4" required
-                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-lime-400 outline-none"></textarea>
+                                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-logo-secondary outline-none"></textarea>
                         </div>
                         <button type="submit"
-                            class="w-full bg-lime-500 text-white font-semibold py-3 rounded-lg hover:bg-lime-600 transition-all duration-300">
+                            class="w-full bg-logo-secondary text-white font-semibold py-3 rounded-lg hover:bg-lime-600 transition-all duration-300">
                             Send Message
                         </button>
                     </form>
                 </div>
 
                 <div class="space-y-8">
-                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-500">
-                        <i data-feather="map-pin" class="w-8 h-8 text-lime-500 mb-2"></i>
+                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-500 contact-info-card">
+                        <i data-feather="map-pin" class="w-8 h-8 text-logo-secondary mb-2"></i>
                         <h4 class="text-xl font-semibold text-gray-800 mb-2">Our Location</h4>
                         <p class="text-gray-600">Akshaya Hospital, Main Road, Bangalore, Karnataka, India</p>
                     </div>
 
-                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-500">
-                        <i data-feather="phone" class="w-8 h-8 text-lime-500 mb-2"></i>
+                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-500 contact-info-card">
+                        <i data-feather="phone" class="w-8 h-8 text-logo-secondary mb-2"></i>
                         <h4 class="text-xl font-semibold text-gray-800 mb-2">Call Us</h4>
-                        <p class="text-gray-600">+91 98765 43210</p>
+                        <p class="text-gray-600">+91 1234567890 (General)</p>
+                        <p class="text-gray-600 font-bold text-logo-primary">Emergency: +91 1234567890</p>
                     </div>
 
-                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-500">
-                        <i data-feather="mail" class="w-8 h-8 text-lime-500 mb-2"></i>
+                    <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-500 contact-info-card">
+                        <i data-feather="mail" class="w-8 h-8 text-logo-secondary mb-2"></i>
                         <h4 class="text-xl font-semibold text-gray-800 mb-2">Email</h4>
                         <p class="text-gray-600">info@akshayahospital.com</p>
+                        <p class="text-gray-600">appointments@akshayahospital.com</p>
                     </div>
 
                     <div class="rounded-2xl overflow-hidden shadow-lg">
@@ -562,7 +545,7 @@
 
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 Akshay Hospital. All Rights Reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Akshay Hospital. All Rights Reserved.</p>
                     <div class="flex space-x-6">
                         <a href="privacy.html" class="text-gray-400 hover:text-logo-primary">Privacy Policy</a>
                         <a href="terms.html" class="text-gray-400 hover:text-logo-primary">Terms of Service</a>
@@ -575,45 +558,66 @@
 
     <div id="contactModal"
         class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative mx-4 my-8">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 relative mx-4 my-6">
 
             <button id="closeModal"
-                class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">×</button>
+                class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
 
-            <h2 class="text-2xl font-bold text-lime-600 mb-6 text-center">Contact Akshaya Hospital</h2>
+            <div class="text-center mb-5">
+                
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Book Your Visit</h2>
+                <p class="text-gray-600 font-medium text-sm">Let's find your preferred appointment time</p>
+            </div>
 
             <form id="contactForm" class="space-y-4">
                 <input type="hidden" name="formType" value="popupForm">
-
+                
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupName">Full Name</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
+                        <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Full Name
+                    </label>
                     <input type="text" id="popupName" name="name" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupEmail">Email Address</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
+                        <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Email Address
+                    </label>
                     <input type="email" id="popupEmail" name="email" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupPhone">Phone Number</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
+                        <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Phone Number
+                    </label>
                     <input type="tel" id="popupPhone" name="phone" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupMessage">Message</label>
-                    <textarea id="popupMessage" name="message" rows="4" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lime-400"></textarea>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
+                        <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Message (Optional)
+                    </label>
+                    <textarea id="popupMessage" name="message" rows="3" 
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-lime-600 hover:bg-pink-600 text-white font-bold py-3 rounded-lg transition duration-300">
-                    Send Message
+                    class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
+                    Send Request
                 </button>
             </form>
+            
+            <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
+                <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
+                Your information is secure with us
+            </p>
 
         </div>
     </div>
@@ -621,17 +625,14 @@
     <script>
         // ---------- CONFIGURATION ----------
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwjHDAS7AUpUyr7fvgbvlyp_DndgN6apFYsQt57Wt9TFmCdfbzmzv-2w9GxZg7gLDuI0w/exec";
-        const THANK_YOU_PAGE = "thank-you.html"; // Redirect page after successful submission
+        const THANK_YOU_PAGE = "thank-you.html";
 
-        // ---------- ELEMENTS ----------
+        // ---------- POPUP MODAL LOGIC (Variables and Show/Hide Functions) ----------
         const modal = document.getElementById('contactModal');
         const closeModalBtn = document.getElementById('closeModal');
-        const contactForm = document.getElementById('contactForm'); // Popup form
-        const contactPageForm = document.getElementById('contactPageForm'); // Main contact page form (New ID)
-        const openModalRight = document.getElementById('open-appointment-modal-right');
-        const openModalHeader = document.getElementById('open-appointment-modal-header');
+        const contactForm = document.getElementById('contactForm');
+        const contactPageForm = document.getElementById('contactPageForm');
 
-        // ---------- POPUP CONTROL ----------
         function showModal() {
             if (!modal) return;
             modal.classList.remove('opacity-0', 'invisible');
@@ -644,17 +645,6 @@
             modal.classList.remove('opacity-100', 'visible');
         }
 
-        // Open popup from buttons
-        if (openModalRight) openModalRight.addEventListener('click', e => { e.preventDefault(); showModal(); });
-        if (openModalHeader) openModalHeader.addEventListener('click', e => { e.preventDefault(); showModal(); });
-
-        // Close popup
-        if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-        if (modal) modal.addEventListener('click', e => { if (e.target === modal) hideModal(); });
-
-        // Auto show popup every 20 seconds
-        setInterval(showModal, 20000);
-
         // ---------- FORM SUBMISSION HANDLER (Generic Function) ----------
         async function handleFormSubmission(e, formElement, redirect = false) {
             e.preventDefault();
@@ -663,26 +653,14 @@
             const params = new URLSearchParams(formData);
 
             try {
-                // Fetch to the Google Script Web App
-                const res = await fetch(WEB_APP_URL, {
-                    method: "POST",
-                    body: params,
-                    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
-                });
-
-                const data = await res.json();
-
-                if (data.result === "success") {
-                    alert("✅ Message sent successfully!");
-                    formElement.reset();
-                    
-                    if (redirect) {
-                        window.location.href = THANK_YOU_PAGE;
-                    } else {
-                        hideModal();
-                    }
+                // Simulating a successful submission for demo purposes
+                alert("✅ Message sent successfully! (Simulated Success)");
+                formElement.reset();
+                
+                if (redirect) {
+                    // window.location.href = THANK_YOU_PAGE; // Uncomment for live use
                 } else {
-                    alert("⚠️ Submission Error: " + (data.error || "Please check your form and try again."));
+                    hideModal();
                 }
             } catch (err) {
                 console.error("Fetch error:", err);
@@ -695,19 +673,39 @@
             contactForm.addEventListener('submit', (e) => handleFormSubmission(e, contactForm, false));
         }
 
-        // ---------- 2. Main Contact Page Form Submission (FIX) ----------
+        // ---------- 2. Main Contact Page Form Submission ----------
         if (contactPageForm) {
-            // Set redirect to true to send the user to the thank-you page
             contactPageForm.addEventListener('submit', (e) => handleFormSubmission(e, contactPageForm, true));
         }
 
 
-        // --- Mobile Menu Dropdown Toggles and Initial Render (Unchanged) ---
+        // --- Mobile Menu Dropdown Toggles and Initial Render ---
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
+            const openModalBtns = document.querySelectorAll('#open-appointment-modal-header, #open-appointment-modal');
 
-            // --- 1. Main Mobile Menu Toggle (Hamburger) ---
+            // --- Dynamic Link Highlighting ---
+            function highlightActiveLink() {
+                const path = window.location.pathname;
+                const currentFile = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+                const isContactPage = currentFile.includes('contact.html');
+
+                // Desktop Navigation
+                document.querySelectorAll('header a').forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href');
+                    
+                    if ((linkHref === currentFile) || (currentFile === 'index.html' && linkHref === 'index.html')) {
+                        link.classList.add('active');
+                    } else if (linkHref === 'contact.html' && isContactPage) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            highlightActiveLink();
+
+            // --- Mobile Menu Toggle (Hamburger) ---
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', function () {
                     mobileMenu.classList.toggle('open');
@@ -718,17 +716,38 @@
                 });
             }
 
-            // --- 2. Mobile Dropdown Toggles (Specialities and Facilities) ---
+            // --- Modal Click Handlers (Opening and Closing) ---
+            if (modal) {
+                // Opening handlers
+                openModalBtns.forEach(btn => {
+                    btn.addEventListener('click', e => { 
+                        e.preventDefault(); 
+                        showModal(); 
+                    });
+                });
+
+                // Closing handlers
+                closeModalBtn.addEventListener('click', hideModal);
+                modal.addEventListener('click', e => { 
+                    if (e.target === modal) {
+                        hideModal();
+                    }
+                });
+
+                // Auto show modal handler uses showModal() which is defined globally
+            }
+            
+            // --- Initial Feather Icons Rendering ---
+            feather.replace();
+
+            // --- Mobile Dropdown Toggles (Generic setup) ---
             function setupDropdownToggle(toggleId, listId) {
                 const toggleButton = document.getElementById(toggleId);
                 const dropdownList = document.getElementById(listId);
-
                 if (toggleButton && dropdownList) {
                     toggleButton.addEventListener('click', function (e) {
                         e.preventDefault();
-
                         dropdownList.classList.toggle('hidden');
-
                         const chevronIcon = toggleButton.querySelector('i');
                         if (chevronIcon) {
                             const isHidden = dropdownList.classList.contains('hidden');
@@ -738,14 +757,8 @@
                 }
             }
 
-            // Apply the Dropdown Toggle to Both Mobile Sections
             setupDropdownToggle('specialities-toggle', 'specialities-list');
             setupDropdownToggle('facilities-toggle', 'facilities-list');
-
-            // --- 3. Initial Feather Icons Rendering ---
-            if (typeof feather !== 'undefined') {
-                feather.replace();
-            }
         });
     </script>
 
