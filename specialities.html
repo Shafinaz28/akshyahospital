@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Hospital - World Class Healthcare | Specialities</title>
+    <title>Akshay Hospital - World Class Healthcare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
   <script>
@@ -11,9 +11,9 @@
             theme: {
                 extend: {
                     colors: {
-                        'logo-primary': '#f43f8c', // pink
-                        'logo-secondary': '#a3e635', // lime green
-                        'logo-dark': '#831843', // dark pink
+                        'logo-primary': '#f43f8c', // Pink
+                        'logo-secondary': '#84cc16', // LIME GREEN: Updated to #84cc16
+                        'logo-dark': '#831843', // Dark Pink
                         'cta-blue': '#007bff',
                         'chat-whatsapp': '#25D366', // WhatsApp Green for floating CTA
                         'emergency-red': '#E03137', // A slightly deeper, professional red for the banner
@@ -44,7 +44,8 @@
 
         .dropdown-menu a:hover {
             background-color: #f3f4f6;
-            color: #a3e635;
+            /* Updated to new lime green for consistency */
+            color: #84cc16; 
         }
 
         .mobile-menu {
@@ -102,6 +103,35 @@
         }
         
         /* ==================================== */
+        /* HERO BACKGROUND IMAGE STYLES (NEW) */
+        /* ==================================== */
+        .bg-hero-image {
+            /* REPLACE THIS URL with your actual background image path */
+            background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0MTUwMzZ8MHwxfHNlYXJjaHw0fHxoZWFsdGhjYXJlJTIwaG9zcGl0YWwlMjBsaWZlfHxlbnwwfDB8fHww&ixlib=rb-4.0.3&q=80&w=1080'); 
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed; 
+        }
+
+        /* ==================================== */
+        /* ANIMATIONS (Kept for text elements) */
+        /* ==================================== */
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes buttonPulse {
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 140, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(244, 63, 140, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(244, 63, 140, 0); }
+        }
+
+        .animate-fade-slide { animation: fadeSlide 0.8s ease-out forwards; }
+        .animate-text-block-fade { animation: fadeSlide 0.8s ease-out 0.4s forwards; opacity: 0; }
+        .animate-button-pulse { animation: buttonPulse 2.5s infinite; }
+
+
+        /* ==================================== */
         /* MODAL FIX: Constraining pop-up width */
         /* ==================================== */
         #contactModal > div {
@@ -114,7 +144,112 @@
             margin-left: auto;
             margin-right: auto;
         }
-        /* Removed unused hero styles for a cleaner document */
+    </style>
+    <style>
+        /* Hero slider styles */
+        .hero-slider {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-1 {
+            background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+        
+        .slide-2 {
+            background-image: url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+        
+        .slide-3 {
+            background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+        }
+        
+        /* Overlay for better text visibility */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-overlay {
+                background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+            }
+        }
+
+        /* Animation styles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        
+        .animate-delay-1 {
+            animation-delay: 0.3s;
+        }
+        
+        .animate-delay-2 {
+            animation-delay: 0.6s;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Slider controls */
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            /* Changed from #3b82f6 to the new logo-secondary color for consistency */
+            background-color: #84cc16; 
+            transform: scale(1.2);
+        }
     </style>
 </head>
 
@@ -128,7 +263,7 @@
         </button>
     </a>
 
-    <a href="https://wa.me/911234567890" target="_blank"
+    <a href="https://wa.me/+919341373782" target="_blank"
         class="fixed right-6 bottom-6 z-50 p-3 bg-chat-whatsapp rounded-full shadow-xl" id="whatsapp-cta"
         aria-label="Chat with us on WhatsApp">
         <i data-feather="message-circle" class="w-7 h-7 text-white"></i>
@@ -149,7 +284,7 @@
                     <i data-feather="phone" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Emergency</p>
-                        <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 1234567890</a>
+                        <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 9341373782</a>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 pt-1">
@@ -171,7 +306,7 @@
             </button>
         </div>
 
-        <div class="hidden md:block bg-lime-500 shadow-md">
+        <div class="hidden md:block bg-logo-secondary shadow-md"> 
             <div class="container mx-auto px-4 py-3">
                 <div class="w-full flex justify-between items-center">
                     <nav class="flex items-center space-x-6 text-white text-base font-medium">
@@ -179,36 +314,36 @@
                         <a href="about.html" class="hover:text-gray-900 transition duration-300">About Us</a>
 
                         <div class="dropdown relative group">
-                            <a href="specialities.html" class="font-bold text-gray-900 flex items-center">
+                            <a href="specialities.html" class="hover:text-gray-900 flex items-center">
                                 Specialities <span class="ml-1 text-xs font-bold">+</span>
                             </a>
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
                                 <a href="general-medicine.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">General Medicine</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">General Medicine</a>
                                 <a href="gastroenterology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Gastroenterology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Gastroenterology</a>
                                 <a href="laparoscopic-surgery.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Laparoscopic Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Laparoscopic Surgery</a>
                                 <a href="surgery.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Surgery</a>
                                 <a href="Obstetrics-Gynaecology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Obstetrics/Gynaecology</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Obstetrics/Gynaecology</a>
                                 <a href="accident-emergency.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Accident & Emergency</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Accident & Emergency</a>
                                 <a href="orthopedics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Orthopedics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Orthopedics</a>
                                 <a href="Paediatrics.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Paediatrics</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Paediatrics</a>
                                 <a href="ICU-Critical-Care.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">ICU & Critical Care</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">ICU & Critical Care</a>
                                 <a href="Neonatology-NICU.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neonatology and NICU</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neonatology and NICU</a>
                                 <a href="Rehabilitation.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Rehabilitation</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Rehabilitation</a>
                                 <a href="Neurology.html"
-                                    class="block px-4 py-2 hover:bg-lime-400 hover:text-white">Neurology</a>
-                            </div>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neurology</a>
+                                    </div>
                         </div>
 
                         <a href="doctors.html" class="hover:text-gray-900">Doctors</a>
@@ -258,9 +393,7 @@
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
                         <a href="https://www.youtube.com/@AkshayaHospitals03" class="hover:text-logo-primary"><i
                                 data-feather="youtube" class="w-6 h-6"></i></a>
-                        <a href="https://www.linkedin.com/company/akshayahospitals/posts/?feedView=all"
-                            class="hover:text-logo-primary"><i data-feather="linkedin" class="w-6 h-6"></i></a>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -271,7 +404,7 @@
 
                 <div class="specialities-mobile-dropdown">
                     <a id="specialities-toggle" href="#"
-                        class="relative py-2 text-lg cursor-pointer flex justify-between items-center pr-8 font-bold">
+                        class="relative py-2 text-lg cursor-pointer flex justify-between items-center pr-8">
                         Specialities <i data-feather="chevron-down"
                             class="w-4 h-4 text-logo-primary absolute right-0 top-1/2 transform -translate-y-1/2"></i>
                     </a>
@@ -348,7 +481,7 @@
                 <div class="flex flex-col items-start pt-2 space-y-3">
                     <h4 class="text-sm font-semibold text-gray-500">Connect With Us</h4>
                     <div class="flex space-x-6 text-gray-700">
-                        <a href="https://www.facebook.com/profile.php?id=61581702164951"
+                        <a href="https://www.facebook.com/people/Akshaya-Hospitals/61581702164951/"
                             class="hover:text-logo-primary"><i data-feather="facebook" class="w-6 h-6"></i></a>
                         <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
@@ -527,9 +660,7 @@
                             class="text-gray-400 hover:text-logo-primary"><i data-feather="youtube"></i></a>
                         <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
                             class="text-gray-400 hover:text-logo-primary"><i data-feather="instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/akshayahospitals/posts/?feedView=all"
-                            class="text-gray-400 hover:text-logo-primary"><i data-feather="linkedin"></i></a>
-                    </div>
+                        </div>
                 </div>
 
                 <div>
@@ -577,7 +708,7 @@
                         </div>
                         <div class="flex items-center">
                             <i data-feather="phone" class="mr-3"></i>
-                            <p>+91 1234567890</p>
+                            <p>+91 9341373782</p>
                         </div>
                         <div class="flex items-center">
                             <i data-feather="mail" class="mr-3"></i>
@@ -603,7 +734,6 @@
             </div>
         </div>
     </footer>
-
 
     <div id="contactModal"
         class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
