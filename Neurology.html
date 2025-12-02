@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshay Hospital - World Class Healthcare | Specialities</title>
+    <title>Akshay Hospital - World Class Healthcare | Neurology</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-  <script>
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -114,7 +114,16 @@
             margin-left: auto;
             margin-right: auto;
         }
-        /* Removed unused hero styles for a cleaner document */
+        
+        /* --- FIX: MOBILE DROPDOWN ICON ROTATION --- */
+        .rotate-180 {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease; /* Add transition for smoothness */
+        }
+        
+        .specialities-mobile-dropdown a i[data-feather="chevron-down"] {
+            transition: transform 0.3s ease-in-out; 
+        }
     </style>
 </head>
 
@@ -149,7 +158,7 @@
                     <i data-feather="phone" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Emergency</p>
-                        <a href="tel:+91 9341373782" class="font-bold text-logo-primary">+91 9341373782</a>
+                        <a href="tel:+911234567890" class="font-bold text-logo-primary">+91 9341373782</a>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 pt-1">
@@ -258,9 +267,7 @@
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
                         <a href="https://www.youtube.com/@AkshayaHospitals03" class="hover:text-logo-primary"><i
                                 data-feather="youtube" class="w-6 h-6"></i></a>
-                        <a href="https://www.linkedin.com/company/akshayahospitals/posts/?feedView=all"
-                            class="hover:text-logo-primary"><i data-feather="linkedin" class="w-6 h-6"></i></a>
-                    </div>
+                            </div>
                 </div>
             </div>
         </div>
@@ -354,129 +361,90 @@
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
                         <a href="https://www.youtube.com/@AkshayaHospitals03" class="hover:text-logo-primary"><i
                                 data-feather="youtube" class="w-6 h-6"></i></a>
-                        <a href="https://www.linkedin.com/company/akshayahospitals/posts/?feedView=all"
-                            class="hover:text-logo-primary"><i data-feather="linkedin" class="w-6 h-6"></i></a>
-                    </div>
+                            </div>
                 </div>
             </div>
         </div>
     </header>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleButton = document.getElementById('specialities-toggle');
-        const specialityList = document.getElementById('specialities-list');
-        
-        // Ensure Feather Icons are rendered
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-
-        // Add the click event listener
-        if (toggleButton && specialityList) {
-            toggleButton.addEventListener('click', function(e) {
-                // IMPORTANT: This prevents navigation so the dropdown works.
-                e.preventDefault(); 
-                
-                // Toggle the 'hidden' Tailwind class
-                specialityList.classList.toggle('hidden');
-
-                // Optional: Rotate the chevron icon
-                const chevronIcon = toggleButton.querySelector('i');
-                if (chevronIcon) {
-                    chevronIcon.style.transform = specialityList.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)'; 
-                }
-            });
-        }
-    });
-</script>
-
-
-<!-- ===== Neurology Department Section ===== -->
 <section class="relative bg-gray-50 py-20 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
-    <!-- Page Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-logo-primary mb-4">Neurology</h1>
-      <p class="text-gray-600 max-w-2xl mx-auto">
-        The Neurology Department at Akshay Hospital provides specialized care for disorders of the nervous system, including the brain, spinal cord, and nerves. 
-        Our expert team ensures accurate diagnosis, advanced treatment, and compassionate care.
-      </p>
-    </div>
-
-    <!-- Hero Image -->
-    <div class="relative mb-16 rounded-3xl overflow-hidden shadow-lg">
-      <img src="specialities/neurology-banner.jpg" alt="Neurology Department"
-        class="w-full h-80 object-cover transform hover:scale-105 transition duration-700">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-      <h2 class="absolute bottom-6 left-6 text-white text-3xl font-semibold">Advanced Neurological Care</h2>
-    </div>
-
-    <!-- Content Section -->
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h3 class="text-2xl font-semibold text-logo-primary mb-4">Our Expertise</h3>
-        <p class="text-gray-700 mb-4">
-          Our neurologists provide comprehensive care for patients with acute and chronic neurological disorders. 
-          From diagnostic evaluations to advanced therapies, we focus on patient-centered treatment plans.
-        </p>
-        <ul class="list-disc list-inside text-gray-700 space-y-2">
-          <li>Stroke and cerebrovascular disorder management</li>
-          <li>Epilepsy diagnosis and treatment</li>
-          <li>Parkinson’s and movement disorder care</li>
-          <li>Neuromuscular disorder evaluation</li>
-          <li>Headache and migraine management</li>
-        </ul>
-      </div>
-
-      <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500">
-        <img src="specialities/neurology-team.jpg" alt="Neurology Team"
-          class="w-full h-80 object-cover transform hover:scale-105 transition duration-700">
-      </div>
-    </div>
-
-    <!-- Service Highlights -->
-    <div class="mt-20">
-      <h3 class="text-2xl font-semibold text-logo-primary text-center mb-8">Why Choose Our Neurology Department?</h3>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
-          <i data-feather="user-check" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">Experienced Neurologists</h4>
-          <p class="text-gray-600">Board-certified specialists with extensive clinical experience.</p>
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-logo-primary mb-4">Neurology</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                The Neurology Department at Akshay Hospital provides specialized care for disorders of the nervous system, including the brain, spinal cord, and nerves. 
+                Our expert team ensures accurate diagnosis, advanced treatment, and compassionate care.
+            </p>
         </div>
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
-          <i data-feather="activity" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">Advanced Diagnostics</h4>
-          <p class="text-gray-600">State-of-the-art imaging and neurophysiological testing for precise diagnosis.</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
-          <i data-feather="heart" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">Patient-Centered Care</h4>
-          <p class="text-gray-600">Customized treatment plans designed for each patient’s unique needs.</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
-          <i data-feather="clock" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">Emergency Neuro Care</h4>
-          <p class="text-gray-600">Rapid response and 24/7 care for acute neurological emergencies.</p>
-        </div>
-      </div>
-    </div>
 
-  <!-- Appointment Call to Action -->
+        <div class="relative mb-16 rounded-3xl overflow-hidden shadow-lg">
+            <img src="specialities/neurology-banner.jpg" alt="Neurology Department"
+                class="w-full h-80 object-cover transform hover:scale-105 transition duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <h2 class="absolute bottom-6 left-6 text-white text-3xl font-semibold">Advanced Neurological Care</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-2xl font-semibold text-logo-primary mb-4">Our Expertise</h3>
+                <p class="text-gray-700 mb-4">
+                    Our neurologists provide comprehensive care for patients with acute and chronic neurological disorders. 
+                    From diagnostic evaluations to advanced therapies, we focus on patient-centered treatment plans.
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Stroke and cerebrovascular disorder management</li>
+                    <li>Epilepsy diagnosis and treatment</li>
+                    <li>Parkinson’s and movement disorder care</li>
+                    <li>Neuromuscular disorder evaluation</li>
+                    <li>Headache and migraine management</li>
+                </ul>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500">
+                <img src="specialities/neurology-team.jpg" alt="Neurology Team"
+                    class="w-full h-80 object-cover transform hover:scale-105 transition duration-700">
+            </div>
+        </div>
+
+        <div class="mt-20">
+            <h3 class="text-2xl font-semibold text-logo-primary text-center mb-8">Why Choose Our Neurology Department?</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
+                    <i data-feather="user-check" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Experienced Neurologists</h4>
+                    <p class="text-gray-600">Board-certified specialists with extensive clinical experience.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
+                    <i data-feather="activity" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Advanced Diagnostics</h4>
+                    <p class="text-gray-600">State-of-the-art imaging and neurophysiological testing for precise diagnosis.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
+                    <i data-feather="heart" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Patient-Centered Care</h4>
+                    <p class="text-gray-600">Customized treatment plans designed for each patient’s unique needs.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 text-center">
+                    <i data-feather="clock" class="w-10 h-10 mx-auto text-lime-500 mb-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Emergency Neuro Care</h4>
+                    <p class="text-gray-600">Rapid response and 24/7 care for acute neurological emergencies.</p>
+                </div>
+            </div>
+        </div>
+
     <div class="mt-20 text-center bg-lime-100 p-10 rounded-3xl shadow-inner">
-      <h3 class="text-2xl font-bold text-gray-800 mb-4">Contact Our Emergency Department</h3>
-      <p class="text-gray-600 mb-6">
-        In case of emergencies, immediate medical attention can save lives. Reach out to our emergency team without delay.
-      </p>
-      <a href="contact.html"
-        class="bg-logo-primary text-white px-6 py-3 rounded-full hover:bg-logo-dark transition duration-300">Call Emergency / Make Appointment</a>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Contact Our Emergency Department</h3>
+            <p class="text-gray-600 mb-6">
+                In case of emergencies, immediate medical attention can save lives. Reach out to our emergency team without delay.
+            </p>
+            <a href="contact.html"
+                class="bg-logo-primary text-white px-6 py-3 rounded-full hover:bg-logo-dark transition duration-300">Call Emergency</a>
+        </div>
     </div>
-  </div>
 </section>
 
-
-<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
@@ -491,7 +459,7 @@
                             class="text-gray-400 hover:text-logo-primary"><i data-feather="youtube"></i></a>
                         <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
                             class="text-gray-400 hover:text-logo-primary"><i data-feather="instagram"></i></a>
-                         </div>
+                        </div>
                 </div>
 
                 <div>
@@ -555,7 +523,7 @@
 
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 Akshay Hospital. All Rights Reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Akshay Hospital. All Rights Reserved.</p>
                     <div class="flex space-x-6">
                         <a href="privacy.html" class="text-gray-400 hover:text-logo-primary">Privacy Policy</a>
                         <a href="terms.html" class="text-gray-400 hover:text-logo-primary">Terms of Service</a>
@@ -567,48 +535,68 @@
     </footer>
 
 
-    <!-- Popup Form -->
     <div id="contactModal"
         class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
-        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative mx-4 my-8">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6 relative mx-4 my-6">
 
-            <!-- Close Button -->
             <button id="closeModal"
                 class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
 
-            <h2 class="text-2xl font-bold text-lime-600 mb-6 text-center">Contact Akshaya Hospital</h2>
+            <div class="text-center mb-5">
+                
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Get Started</h2>
+                <p class="text-gray-600 font-medium text-sm">Your Health, Our Priority</p>
+            </div>
 
             <form id="contactForm" class="space-y-4">
                 <input type="hidden" name="formType" value="popupForm">
-
+                
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupName">Full Name</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
+                        <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Full Name
+                    </label>
                     <input type="text" id="popupName" name="name" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupEmail">Email Address</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
+                        <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Email Address
+                    </label>
                     <input type="email" id="popupEmail" name="email" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupPhone">Phone Number</label>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
+                        <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Phone Number
+                    </label>
                     <input type="tel" id="popupPhone" name="phone" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2">
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-2" for="popupMessage">Message</label>
-                    <textarea id="popupMessage" name="message" rows="4" required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-2"></textarea>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
+                        <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Message (Optional)
+                    </label>
+                    <textarea id="popupMessage" name="message" rows="3" 
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-lime-600 hover:bg-pink-600 text-white font-bold py-3 rounded-lg">Send
-                    Message</button>
+                    class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
+                    Send Request
+                </button>
             </form>
+            
+            <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
+                <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
+                Your information is secure with us
+            </p>
 
         </div>
     </div>
@@ -618,13 +606,13 @@
     // ---------- WEB APP URL ----------
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwjHDAS7AUpUyr7fvgbvlyp_DndgN6apFYsQt57Wt9TFmCdfbzmzv-2w9GxZg7gLDuI0w/exec";
 
-    // ---------- POPUP FORM ----------
+    // ---------- POPUP FORM LOGIC (MODAL) ----------
     const modal = document.getElementById('contactModal');
     const closeModalBtn = document.getElementById('closeModal');
     const contactForm = document.getElementById('contactForm');
 
     // Buttons that open popup
-    const openModalRight = document.getElementById('open-appointment-modal-right'); // Right-middle button
+    const openModalSide = document.getElementById('open-appointment-modal'); // Fixed side CTA
     const openModalHeader = document.getElementById('open-appointment-modal-header'); // Header button
 
     // Show popup
@@ -640,15 +628,35 @@
     }
 
     // Add click events to buttons
-    if(openModalRight) openModalRight.addEventListener('click', e => { e.preventDefault(); showModal(); });
-    if(openModalHeader) openModalHeader.addEventListener('click', e => { e.preventDefault(); showModal(); });
+    document.addEventListener('DOMContentLoaded', () => {
+        // FIXED SIDE CTA HANDLER (FIXED)
+        if(openModalSide) {
+            openModalSide.addEventListener('click', e => { 
+                e.preventDefault(); 
+                showModal(); 
+            });
+        }
 
-    // Close modal
-    closeModalBtn.addEventListener('click', hideModal);
-    modal.addEventListener('click', e => { if(e.target === modal) hideModal(); });
+        // HEADER BUTTON HANDLER
+        if(openModalHeader) {
+            openModalHeader.addEventListener('click', e => { 
+                e.preventDefault(); 
+                showModal(); 
+            });
+        }
+        
+        // Close modal handlers
+        closeModalBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', e => { if(e.target === modal) hideModal(); });
 
-    // Auto show popup every 20 seconds
-    setInterval(showModal, 20000);
+        // Auto show popup every 20 seconds
+        setInterval(showModal, 20000);
+        
+        // Initial feather icon replacement
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    });
 
     // Handle form submission
     contactForm.addEventListener('submit', async (e) => {
@@ -689,86 +697,52 @@
 </script>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        // --- 1. Main Mobile Menu Toggle (Hamburger) ---
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function () {
+                mobileMenu.classList.toggle('open');
+                const icon = mobileMenuButton.querySelector('i');
+                const isOpen = mobileMenu.classList.contains('open');
+                // Change icon from menu to 'x' when open
+                icon.setAttribute('data-feather', isOpen ? 'x' : 'menu');
+                feather.replace();
+            });
+        }
 
+        // --- 2. Mobile Dropdown Toggles (Specialities and Facilities) ---
+        function setupDropdownToggle(toggleId, listId) {
+            const toggleButton = document.getElementById(toggleId);
+            const dropdownList = document.getElementById(listId);
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const openModalButton = document.getElementById('open-appointment-modal');
-            const closeModalButton = document.getElementById('close-modal');
-            const appointmentModal = document.getElementById('appointment-modal');
-
-            // --- 1. Main Mobile Menu Toggle (Hamburger) ---
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function () {
-                    mobileMenu.classList.toggle('open');
-                    const icon = mobileMenuButton.querySelector('i');
-                    const isOpen = mobileMenu.classList.contains('open');
-                    // Change icon from menu to 'x' when open
-                    icon.setAttribute('data-feather', isOpen ? 'x' : 'menu');
-                    feather.replace();
-                });
-            }
-
-            // --- 2. Mobile Dropdown Toggles (Specialities and Facilities) ---
-            function setupDropdownToggle(toggleId, listId) {
-                const toggleButton = document.getElementById(toggleId);
-                const dropdownList = document.getElementById(listId);
-
-                if (toggleButton && dropdownList) {
-                    toggleButton.addEventListener('click', function (e) {
-                        e.preventDefault();
-
-                        dropdownList.classList.toggle('hidden');
-
-                        const chevronIcon = toggleButton.querySelector('i');
-                        if (chevronIcon) {
-                            const isHidden = dropdownList.classList.contains('hidden');
-                            // Rotate icon 180 degrees when open
-                            chevronIcon.classList.toggle('rotate-180', !isHidden);
-                        }
-                    });
-                }
-            }
-
-            // Apply the Dropdown Toggle to Both Mobile Sections
-            setupDropdownToggle('specialities-toggle', 'specialities-list');
-            setupDropdownToggle('facilities-toggle', 'facilities-list');
-
-
-            // --- 3. Appointment Modal Logic ---
-            if (openModalButton && appointmentModal && closeModalButton) {
-                // Open modal when fixed CTA button is clicked
-                openModalButton.addEventListener('click', function (e) {
+            if (toggleButton && dropdownList) {
+                toggleButton.addEventListener('click', function (e) {
                     e.preventDefault();
-                    appointmentModal.classList.add('active');
-                });
 
-                // Close modal when X button is clicked
-                closeModalButton.addEventListener('click', function () {
-                    appointmentModal.classList.remove('active');
-                });
+                    // This is the key line: toggles the hidden class for the list
+                    dropdownList.classList.toggle('hidden');
 
-                // Close modal if overlay is clicked
-                appointmentModal.addEventListener('click', function (e) {
-                    if (e.target === appointmentModal) {
-                        appointmentModal.classList.remove('active');
+                    const chevronIcon = toggleButton.querySelector('i');
+                    if (chevronIcon) {
+                        // Toggle the rotate class for the chevron icon
+                        chevronIcon.classList.toggle('rotate-180', !dropdownList.classList.contains('hidden'));
                     }
                 });
             }
+        }
 
-            // --- 4. Initial Feather Icons Rendering & Footer Year ---
-            if (typeof feather !== 'undefined') {
-                feather.replace();
-            }
-            const yearElement = document.getElementById('year');
-            if (yearElement) {
-                yearElement.textContent = new Date().getFullYear();
-            }
-        });
-    </script>
+        // Apply the Dropdown Toggle to Both Mobile Sections
+        setupDropdownToggle('specialities-toggle', 'specialities-list');
+        setupDropdownToggle('facilities-toggle', 'facilities-list');
+
+        // NOTE: Initial feather icons rendering is now inside the modal logic block above
+        // to ensure it runs *after* all elements are in place.
+    });
+</script>
 </body>
 
 </html>
-
