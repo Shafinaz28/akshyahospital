@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akshay Hospital - World Class Healthcare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-  <script>
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -45,7 +46,7 @@
         .dropdown-menu a:hover {
             background-color: #f3f4f6;
             /* Updated to new lime green for consistency */
-            color: #84cc16; 
+            color: #84cc16;
         }
 
         .mobile-menu {
@@ -73,12 +74,14 @@
         .akshaya-logo {
             display: flex;
             align-items: center;
-            height: 90px; /* Increased height */
+            height: 90px;
+            /* Increased height */
             width: auto;
         }
 
         .akshaya-logo img {
-            height: 90px; /* Increased height */
+            height: 90px;
+            /* Increased height */
             width: auto;
             object-fit: contain;
             margin-right: 0;
@@ -101,44 +104,69 @@
         #whatsapp-cta:hover {
             transform: scale(1.1);
         }
-        
+
         /* ==================================== */
         /* HERO BACKGROUND IMAGE STYLES (NEW) */
         /* ==================================== */
         .bg-hero-image {
             /* REPLACE THIS URL with your actual background image path */
-            background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0MTUwMzZ8MHwxfHNlYXJjaHw0fHxoZWFsdGhjYXJlJTIwaG9zcGl0YWwlMjBsaWZlfHxlbnwwfDB8fHww&ixlib=rb-4.0.3&q=80&w=1080'); 
+            background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0MTUwMzZ8MHwxfHNlYXJjaHw0fHxoZWFsdGhjYXJlJTIwaG9zcGl0YWwlMjBsaWZlfHxlbnwwfDB8fHww&ixlib=rb-4.0.3&q=80&w=1080');
             background-size: cover;
             background-position: center center;
-            background-attachment: fixed; 
+            background-attachment: fixed;
         }
 
         /* ==================================== */
         /* ANIMATIONS (Kept for text elements) */
         /* ==================================== */
         @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes buttonPulse {
-            0% { box-shadow: 0 0 0 0 rgba(244, 63, 140, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(244, 63, 140, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(244, 63, 140, 0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .animate-fade-slide { animation: fadeSlide 0.8s ease-out forwards; }
-        .animate-text-block-fade { animation: fadeSlide 0.8s ease-out 0.4s forwards; opacity: 0; }
-        .animate-button-pulse { animation: buttonPulse 2.5s infinite; }
+        @keyframes buttonPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(244, 63, 140, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(244, 63, 140, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(244, 63, 140, 0);
+            }
+        }
+
+        .animate-fade-slide {
+            animation: fadeSlide 0.8s ease-out forwards;
+        }
+
+        .animate-text-block-fade {
+            animation: fadeSlide 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .animate-button-pulse {
+            animation: buttonPulse 2.5s infinite;
+        }
 
 
         /* ==================================== */
         /* MODAL FIX: Constraining pop-up width */
         /* ==================================== */
-        #contactModal > div {
-            max-width: 28rem; 
-            width: 90%; 
-            max-height: none; 
-            overflow-y: auto; 
+        #contactModal>div {
+            max-width: 28rem;
+            width: 90%;
+            max-height: none;
+            overflow-y: auto;
             transform: scale(1);
             transition: transform 0.3s ease-out;
             margin-left: auto;
@@ -152,7 +180,7 @@
             height: 90vh;
             overflow: hidden;
         }
-        
+
         .slide {
             position: absolute;
             top: 0;
@@ -164,23 +192,23 @@
             background-size: cover;
             background-position: center;
         }
-        
+
         .slide.active {
             opacity: 1;
         }
-        
+
         .slide-1 {
             background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
         }
-        
+
         .slide-2 {
             background-image: url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
         }
-        
+
         .slide-3 {
             background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
         }
-        
+
         /* Overlay for better text visibility */
         .hero-overlay {
             position: absolute;
@@ -190,41 +218,56 @@
             height: 100%;
             background: rgba(255, 255, 255, 0.85);
         }
-        
+
         @media (min-width: 768px) {
             .hero-overlay {
-                background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+                background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
             }
         }
 
         /* Animation styles */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .animate-fade-in {
             animation: fadeIn 1s ease-out forwards;
         }
-        
+
         .animate-delay-1 {
             animation-delay: 0.3s;
         }
-        
+
         .animate-delay-2 {
             animation-delay: 0.6s;
         }
-        
+
         .animate-pulse {
             animation: pulse 2s infinite;
         }
-        
+
         /* Slider controls */
         .slider-controls {
             position: absolute;
@@ -235,7 +278,7 @@
             gap: 10px;
             z-index: 10;
         }
-        
+
         .slider-dot {
             width: 12px;
             height: 12px;
@@ -244,10 +287,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .slider-dot.active {
             /* Changed from #3b82f6 to the new logo-secondary color for consistency */
-            background-color: #84cc16; 
+            background-color: #84cc16;
             transform: scale(1.2);
         }
     </style>
@@ -291,7 +334,7 @@
                     <i data-feather="mail" class="text-logo-primary"></i>
                     <div>
                         <p class="text-sm text-gray-500">Email</p>
-                        <a href="mailto:info@akshayhospital.com"
+                        <a href="mailto:info@akshayahospital.com"
                             class="font-bold text-logo-primary">akshayahospitals03@gmail.com</a>
                     </div>
                 </div>
@@ -306,7 +349,7 @@
             </button>
         </div>
 
-        <div class="hidden md:block bg-logo-secondary shadow-md"> 
+        <div class="hidden md:block bg-logo-secondary shadow-md">
             <div class="container mx-auto px-4 py-3">
                 <div class="w-full flex justify-between items-center">
                     <nav class="flex items-center space-x-6 text-white text-base font-medium">
@@ -320,30 +363,35 @@
                             <div
                                 class="dropdown-menu absolute left-0 mt-2 w-64 bg-white text-gray-800 rounded-md shadow-lg py-2 z-50 hidden group-hover:block border border-gray-100">
                                 <a href="general-medicine.html"
-                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">General Medicine</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">General
+                                    Medicine</a>
                                 <a href="gastroenterology.html"
                                     class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Gastroenterology</a>
                                 <a href="laparoscopic-surgery.html"
-                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Laparoscopic Surgery</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Laparoscopic
+                                    Surgery</a>
                                 <a href="surgery.html"
                                     class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Surgery</a>
                                 <a href="Obstetrics-Gynaecology.html"
                                     class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Obstetrics/Gynaecology</a>
                                 <a href="accident-emergency.html"
-                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Accident & Emergency</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Accident &
+                                    Emergency</a>
                                 <a href="orthopedics.html"
                                     class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Orthopedics</a>
                                 <a href="Paediatrics.html"
                                     class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Paediatrics</a>
                                 <a href="ICU-Critical-Care.html"
-                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">ICU & Critical Care</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">ICU & Critical
+                                    Care</a>
                                 <a href="Neonatology-NICU.html"
-                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neonatology and NICU</a>
+                                    class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neonatology and
+                                    NICU</a>
                                 <a href="Rehabilitation.html"
                                     class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Rehabilitation</a>
                                 <a href="Neurology.html"
                                     class="block px-4 py-2 hover:bg-logo-secondary hover:text-white">Neurology</a>
-                                    </div>
+                            </div>
                         </div>
 
                         <a href="doctors.html" class="hover:text-gray-900">Doctors</a>
@@ -393,7 +441,7 @@
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
                         <a href="https://www.youtube.com/@AkshayaHospitals03" class="hover:text-logo-primary"><i
                                 data-feather="youtube" class="w-6 h-6"></i></a>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -487,27 +535,28 @@
                             class="hover:text-logo-primary"><i data-feather="instagram" class="w-6 h-6"></i></a>
                         <a href="https://www.youtube.com/@AkshayaHospitals03" class="hover:text-logo-primary"><i
                                 data-feather="youtube" class="w-6 h-6"></i></a>
-                       </div>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-     <section class="hero-slider relative min-h-[90vh] flex items-center overflow-hidden bg-gray-50">
+    <section class="hero-slider relative min-h-[90vh] flex items-center overflow-hidden bg-gray-50">
         <div class="slide slide-1 active"></div>
-        
+
         <div class="slide slide-2"></div>
-        
+
         <div class="slide slide-3"></div>
-        
+
         <div class="hero-overlay"></div>
-        
+
         <div class="container mx-auto px-4 py-20 relative z-10 md:w-3/5 lg:w-1/2">
             <p class="text-xl font-semibold text-logo-secondary mb-3 animate-fade-in">
                 Your Health, Our Priority
             </p>
 
-            <h1 class="text-6xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 animate-fade-in animate-delay-1">
+            <h1
+                class="text-6xl md:text-7xl font-extrabold text-gray-900 leading-tight mb-6 animate-fade-in animate-delay-1">
                 We Take Care of You and <span class="text-logo-primary">Everything Else</span>
             </h1>
 
@@ -517,13 +566,12 @@
                 </p>
             </div>
 
-            <a href="#" id="open-appointment-modal-hero"
-                class="inline-block px-10 py-4 text-xl font-bold rounded-xl shadow-xl transition duration-300 transform hover:scale-105
+            <a href="#" id="open-appointment-modal-hero" class="inline-block px-10 py-4 text-xl font-bold rounded-xl shadow-xl transition duration-300 transform hover:scale-105
                        bg-logo-primary text-white hover:bg-logo-dark animate-pulse animate-fade-in animate-delay-2">
                 Book an Appointment Today
             </a>
         </div>
-        
+
         <div class="slider-controls">
             <div class="slider-dot active" data-slide="0"></div>
             <div class="slider-dot" data-slide="1"></div>
@@ -533,41 +581,41 @@
 
     <script>
         // Hero slider functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const slides = document.querySelectorAll('.slide');
             const dots = document.querySelectorAll('.slider-dot');
             let currentSlide = 0;
-            
+
             function showSlide(index) {
                 // Hide all slides
                 slides.forEach(slide => slide.classList.remove('active'));
                 dots.forEach(dot => dot.classList.remove('active'));
-                
+
                 // Show current slide
                 slides[index].classList.add('active');
                 dots[index].classList.add('active');
                 currentSlide = index;
             }
-            
+
             // Auto slide change
             function nextSlide() {
                 let nextIndex = (currentSlide + 1) % slides.length;
                 showSlide(nextIndex);
             }
-            
+
             // Set interval for auto sliding (every 5 seconds)
             let slideInterval = setInterval(nextSlide, 5000);
-            
+
             // Dot click handlers
             dots.forEach(dot => {
-                dot.addEventListener('click', function() {
+                dot.addEventListener('click', function () {
                     clearInterval(slideInterval);
                     showSlide(parseInt(this.dataset.slide));
                     // Restart auto sliding
                     slideInterval = setInterval(nextSlide, 5000);
                 });
             });
-            
+
             // Pause on hover
             const slider = document.querySelector('.hero-slider');
             slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
@@ -577,7 +625,7 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const openModalHero = document.getElementById('open-appointment-modal-hero');
             const openModalHeader = document.getElementById('open-appointment-modal-header'); // New ID for header button
 
@@ -603,7 +651,7 @@
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose Akshay Hospital?</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose Akshaya Hospital?</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">We are committed to providing exceptional patient care
                     with
                     cutting-edge technology and compassionate service.</p>
@@ -720,62 +768,42 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="http://static.photos/people/320x240/1" alt="Dr. Sharma" class="w-full h-64 object-cover">
+                    <img src="./doctorsimg/Dr.Sachin.jpg" alt="Dr. Sharma" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Dr. Rajesh Sharma</h3>
-                        <p class="text-logo-primary mb-2">Cardiologist</p>
-                        <p class="text-gray-600">MBBS, MD, DM Cardiology with 15+ years of experience.</p>
-                        <div class="mt-4 flex space-x-2">
-                            <span class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Heart
-                                Specialist</span>
-                            <span
-                                class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Angioplasty</span>
-                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Dr.Sachin</h3>
+                        <p class="text-logo-primary mb-2">General surgeon</p>
+                        <p class="text-gray-600">MBBS, MD, General surgeon with 15+ years of experience.</p>
+
                     </div>
                 </div>
 
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="http://static.photos/people/320x240/2" alt="Dr. Patel" class="w-full h-64 object-cover">
+                    <img src="./doctorsimg/Dr.VijayRaghavaRedd.jpg" alt="Dr. Patel" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Dr. Priya Patel</h3>
-                        <p class="text-logo-primary mb-2">Neurologist</p>
-                        <p class="text-gray-600">MBBS, MD, DM Neurology with 12+ years of experience.</p>
-                        <div class="mt-4 flex space-x-2">
-                            <span class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Brain
-                                Specialist</span>
-                            <span class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Stroke
-                                Care</span>
-                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Dr.Vijay Raghava Redd</h3>
+                        <p class="text-logo-primary mb-2">General surgeon</p>
+                        <p class="text-gray-600">MBBS, MD, General surgeon with 20+ years of experience.</p>
+
                     </div>
                 </div>
 
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="http://static.photos/people/320x240/3" alt="Dr. Kumar" class="w-full h-64 object-cover">
+                    <img src="./doctorsimg/Dr.Geethanjali.jpg" alt="Dr. Kumar" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Dr. Amit Kumar</h3>
-                        <p class="text-logo-primary mb-2">Orthopedic Surgeon</p>
-                        <p class="text-gray-600">MBBS, MS Orthopedics with 18+ years of experience.</p>
-                        <div class="mt-4 flex space-x-2">
-                            <span class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Joint
-                                Replacement</span>
-                            <span class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Sports
-                                Medicine</span>
-                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Dr.Geethanjali</h3>
+                        <p class="text-logo-primary mb-2">Obstetrics and gynaecology</p>
+                        <p class="text-gray-600">MBBS, Obstetrics and gynaecology with 12+ years of experience.</p>
+
                     </div>
                 </div>
 
                 <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
-                    <img src="http://static.photos/people/320x240/4" alt="Dr. Gupta" class="w-full h-64 object-cover">
+                    <img src="./doctorsimg/Dr.Suhail.jpg" alt="Dr. Gupta" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Dr. Neha Gupta</h3>
-                        <p class="text-logo-primary mb-2">Pediatrician</p>
-                        <p class="text-gray-600">MBBS, MD Pediatrics with 10+ years of experience.</p>
-                        <div class="mt-4 flex space-x-2">
-                            <span class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Child
-                                Care</span>
-                            <span
-                                class="bg-logo-secondary/20 text-logo-dark text-xs px-2 py-1 rounded">Vaccination</span>
-                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800">Dr.Suhail</h3>
+                        <p class="text-logo-primary mb-2">ENT</p>
+                        <p class="text-gray-600">MBBS, ENT with 10+ years of experience.</p>
+
                     </div>
                 </div>
             </div>
@@ -809,7 +837,7 @@
                                 <i data-feather="mail" class="mr-4"></i>
                                 <div>
                                     <p class="text-sm opacity-80">Email</p>
-                                    <p class="font-semibold">appointments@akshayhospital.com</p>
+                                    <p class="font-semibold">akshayahospitals03@gmail.com</p>
                                 </div>
                             </div>
                             <div class="flex items-center">
@@ -871,7 +899,7 @@
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Patient Testimonials</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Hear what our patients say about their experience at
-                    Akshay
+                    Akshaya
                     Hospital.</p>
             </div>
 
@@ -885,7 +913,7 @@
                             <p class="text-sm text-gray-500">Cardiac Patient</p>
                         </div>
                     </div>
-                    <p class="text-gray-700">"The care I received at Akshay Hospital was exceptional. Dr. Sharma's
+                    <p class="text-gray-700">"The care I received at Akshaya Hospital was exceptional. Dr. Sharma's
                         expertise and the nursing staff's attention made my recovery smooth."</p>
                     <div class="mt-4 flex text-yellow-400">
                         <i data-feather="star" class="w-4 h-4 fill-current"></i>
@@ -905,7 +933,7 @@
                             <p class="text-sm text-gray-500">Orthopedic Patient</p>
                         </div>
                     </div>
-                    <p class="text-gray-700">"After my knee replacement surgery, the rehabilitation team at Akshay
+                    <p class="text-gray-700">"After my knee replacement surgery, the rehabilitation team at Akshaya
                         Hospital helped me regain mobility faster than I expected. Highly recommended!"</p>
                     <div class="mt-4 flex text-yellow-400">
                         <i data-feather="star" class="w-4 h-4 fill-current"></i>
@@ -925,7 +953,7 @@
                             <p class="text-sm text-gray-500">Neurology Patient</p>
                         </div>
                     </div>
-                    <p class="text-gray-700">"The neurology department at Akshay Hospital has world-class
+                    <p class="text-gray-700">"The neurology department at Akshaya Hospital has world-class
                         facilities.
                         Dr. Patel's diagnosis was accurate and treatment effective. Thank you!"</p>
                     <div class="mt-4 flex text-yellow-400">
@@ -1021,13 +1049,12 @@
         </div>
     </section>
 
-
     <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <h3 class="text-xl font-semibold mb-6">About Akshay Hospital</h3>
-                    <p class="text-gray-400 mb-4">Akshay Hospital is a multi-specialty healthcare provider committed
+                    <h3 class="text-xl font-semibold mb-6">About Akshaya Hospital</h3>
+                    <p class="text-gray-400 mb-4">Akshaya Hospital is a multi-specialty healthcare provider committed
                         to delivering world-class medical services with compassion and excellence.</p>
                     <div class="flex space-x-4">
                         <a href="https://www.facebook.com/people/Akshaya-Hospitals/61581702164951/"
@@ -1037,7 +1064,7 @@
                             class="text-gray-400 hover:text-logo-primary"><i data-feather="youtube"></i></a>
                         <a href="https://www.instagram.com/akshayahospitals0310?igsh=MWVnbHdrd3M4N2lhZg=="
                             class="text-gray-400 hover:text-logo-primary"><i data-feather="instagram"></i></a>
-                        </div>
+                    </div>
                 </div>
 
                 <div>
@@ -1100,80 +1127,76 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">© 2025 Akshay Hospital. All Rights Reserved.</p>
-                    <div class="flex space-x-6">
-                        <a href="privacy.html" class="text-gray-400 hover:text-logo-primary">Privacy Policy</a>
-                        <a href="terms.html" class="text-gray-400 hover:text-logo-primary">Terms of Service</a>
-                        <a href="sitemap.html" class="text-gray-400 hover:text-logo-primary">Sitemap</a>
-                    </div>
+                <div class="flex flex-col md:flex-row justify-between items-center text-center">
+                    <p class="text-gray-400 mb-0 w-full">© 2025 Akshaya Hospital. All Rights Reserved.</p>
+
                 </div>
             </div>
         </div>
     </footer>
 
-<div id="contactModal"
-    class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
-    <div class="bg-white rounded-2xl shadow-xl w-full p-6 relative mx-4 my-6">
+    <div id="contactModal"
+        class="fixed inset-0 z-[9999] bg-gray-900/70 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-opacity duration-300 overflow-auto">
+        <div class="bg-white rounded-2xl shadow-xl w-full p-6 relative mx-4 my-6">
 
-        <button id="closeModal"
-            class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+            <button id="closeModal"
+                class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
 
-        <div class="text-center mb-5">
-            
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Get Started</h2>
-            <p class="text-gray-600 font-medium text-sm">Your Health, Our Priority</p>
+            <div class="text-center mb-5">
+
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-1">Get Started</h2>
+                <p class="text-gray-600 font-medium text-sm">Your Health, Our Priority</p>
+            </div>
+            <form id="contactForm" class="space-y-4">
+
+                <div>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
+                        <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Full Name
+                    </label>
+                    <input type="text" id="popupName" name="name" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
+                        <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Email Address
+                    </label>
+                    <input type="email" id="popupEmail" name="email" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
+                        <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Phone Number
+                    </label>
+                    <input type="tel" id="popupPhone" name="phone" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
+                        <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
+                        Message
+                    </label>
+                    <textarea id="popupMessage" name="message" rows="3" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
+                    Send Message
+                </button>
+            </form>
+
+            <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
+                <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
+                Your information is secure with us
+            </p>
         </div>
-        <form id="contactForm" class="space-y-4">
-            
-            <div>
-                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupName">
-                    <i data-feather="user" class="w-4 h-4 mr-2 text-logo-primary"></i>
-                    Full Name
-                </label>
-                <input type="text" id="popupName" name="name" required
-                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
-            </div>
-
-            <div>
-                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupEmail">
-                    <i data-feather="mail" class="w-4 h-4 mr-2 text-logo-primary"></i>
-                    Email Address
-                </label>
-                <input type="email" id="popupEmail" name="email" required
-                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
-            </div>
-
-            <div>
-                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupPhone">
-                    <i data-feather="phone" class="w-4 h-4 mr-2 text-logo-primary"></i>
-                    Phone Number
-                </label>
-                <input type="tel" id="popupPhone" name="phone" required
-                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary">
-            </div>
-
-            <div>
-                <label class="block text-gray-700 mb-1 flex items-center font-semibold text-sm" for="popupMessage">
-                    <i data-feather="message-circle" class="w-4 h-4 mr-2 text-logo-primary"></i>
-                    Message
-                </label>
-                <textarea id="popupMessage" name="message" rows="3" required
-                    class="w-full border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-logo-primary focus:border-logo-primary"></textarea>
-            </div>
-
-            <button type="submit"
-                class="w-full bg-logo-primary hover:bg-logo-dark text-white font-bold py-2.5 rounded-lg shadow-lg transition duration-300 mt-4">
-                Send Message
-            </button>
-        </form>
-        
-        <p class="text-xs text-gray-500 mt-3 text-center flex items-center justify-center">
-            <i data-feather="lock" class="w-3.5 h-3.5 mr-1 text-logo-primary"></i>
-            Your information is secure with us
-        </p>
-        </div>
-</div>
+    </div>
 
 
     <script>
@@ -1211,7 +1234,7 @@
                 message: document.getElementById('popupMessage').value,
                 formType: "popupForm"
             };
-            
+
             const params = new URLSearchParams();
             for (const key in formData) params.append(key, formData[key]);
 
@@ -1248,7 +1271,7 @@
                 message: document.getElementById('message').value,
                 formType: "appointmentForm"
             };
-            
+
             const params = new URLSearchParams();
             for (const key in formData) params.append(key, formData[key]);
 
@@ -1321,7 +1344,7 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 // Ignore the modal buttons as they are handled above
-                if (this.id !== 'open-appointment-modal-hero' && this.id !== 'open-appointment-modal-header') { 
+                if (this.id !== 'open-appointment-modal-hero' && this.id !== 'open-appointment-modal-header') {
                     e.preventDefault();
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
@@ -1329,7 +1352,7 @@
                 }
             });
         });
-    </script>  
+    </script>
 </body>
 
 </html>
